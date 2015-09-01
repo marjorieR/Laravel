@@ -27,26 +27,28 @@ class MoviesController extends Controller{
     /**
      *  page read
      */
-    public function read(){
-        return view('Movies/read');
+    public function read($id){
+        return view('Movies/read',['id'=>$id]);
 
     }
 
     /**
      *  page Update
      */
-    public function update(){
-        return view('Movies/update');
+    public function update($id){
+        return view('Movies/update',['id'=>$id]);
 
     }
 
     /**
      *  page Delete
      */
-    public function delete(){
-        return redirect('/movies/index'); //redirection vers l'index
+    public function delete($id){
+        return redirect('/movies/index',['id'=>$id]); //redirection vers l'index
 
     }
 
-
+    public function search($languages= "fr",$visible = 1,$duree = 2){
+        return view('/Movies/search',['languages'=>$languages,'visible'=>$visible,'duree'=>$duree]);
+    }
 }

@@ -46,8 +46,7 @@
     <div class="content">
 
         <div class="title">Directors Read</div>
-        <h1>{{ $lastname}}
-            {{ $firstname}}</h1>
+        <h1>{{ $id }}</h1>
 
     </div>
 

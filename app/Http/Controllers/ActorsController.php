@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Model\Actors;
 
 
 /**
@@ -17,28 +18,11 @@ class ActorsController extends Controller{
 
     public function index(){
 
+
+
         $datas =[
 
-            "acteurs"=>[
-
-                ["nom" => "Boyer","Prenom" =>"Julien", "age" =>27],
-                ["nom" => "De Brito","Prenom" =>"Thaïs", "age" =>27],
-                ["nom" => "Rouquet","Prenom" =>"Marjorie", "age" =>31],
-                ["nom" => "Lehne","Prenom" =>"Mathieu", "age" =>33],
-
-                ],
-
-            'title'=> "Liste des acteurs",
-            "noms" =>["julien","Mathieu","Jessy","Thaïs","Marjorie"],
-            "age" => [27,33,22,27,31],
-
-            "localite"=>[
-
-                "Paris" =>["Jessy", "Marjorie","Daniel"],
-
-            "Lyon" => ["Thaïs","Julien","Mathieu"]
-
-            ]
+            "actors" => Actors::all()
         ];
 
         return view('Actors/index',$datas);
@@ -54,9 +38,9 @@ class ActorsController extends Controller{
     /**
      *  page read
      */
-    public function read($firstname,$lastname){
+    public function read($id){
 
-        return view('Actors/read',['firstname'=>$firstname],['lastname'=>$lastname]);
+        return view('Actors/read',['id'=>$id]);
 
     }
 

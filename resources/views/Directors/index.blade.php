@@ -1,56 +1,65 @@
-<!DOCTYPE html>
+@extends('layout')
 
-<html>
-<head>
+@section('title')  liste de mes acteurs  @endsection
 
-    <title>Index</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
-    <style>
-        html, body {
-            height: 100%;
-        }
 
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            display: table;
-            font-weight: 100;
-            font-family: 'Lato';
-        }
 
-        .container {
-            text-align: center;
-            display: table-cell;
-            vertical-align: middle;
-        }
 
-        .content {
-            text-align: center;
-            display: inline-block;
-        }
+@section('breadcrumb')<li><a href="#"Home></a></li><li>Actors</li><li>Index</li>  @endsection
 
-        .title {
-            font-size: 96px;
-        }
-    </style>
+@show
 
-</head>
 
-<body>
+@section('css')  
+@parent
+<link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+@endsection
 
-<div class="container">
 
-    <div class="content">
 
-        <div class="title">Index</div>
+@section('content')
 
+    <div class="table-info">
+        <div class="table-header">
+            <div class="table-caption">
+                Actors
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            @foreach($directors as $director)
+
+                <tr>
+                    <td>{{ $director->id}}</td>
+                    <td>{{ $director->firstname }}</td>
+                    <td>{{ $director->lastname }}</td>
+
+                </tr>
+
+
+            @endforeach
+
+            </tbody>
+        </table>
+        <div class="table-footer">
+            Footer
+        </div>
     </div>
 
-</div>
 
-</body>
 
-</html>
+
+
+@endsection
+

@@ -33,24 +33,24 @@ class DirectorsController extends Controller{
     /**
      *  page read
      */
-    public function read($firstname,$lastname){
-        return view('directors/read',['firstname'=>$firstname],['lastname'=>$lastname]);
+    public function read($id){
+        return view('Directors/read',['id'=>$id]);
 
     }
 
     /**
      *  page Update
      */
-    public function update(){
-        return view('Directors/update');
+    public function update($id){
+        return view('Directors/update',['id'=>$id]);
 
     }
 
     /**
      *  page Delete
      */
-    public function delete(){
-        return redirect('/directors/index'); //redirection vers l'index
+    public function delete($id){
+        return redirect('/directors/index',['id'=>$id]);//redirection vers l'index
 
     }
 

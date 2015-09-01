@@ -46,6 +46,7 @@
     <div class="content">
 
         <div class="title">Update</div>
+        <h1>{{ $id }}</h1>
 
     </div>
 
