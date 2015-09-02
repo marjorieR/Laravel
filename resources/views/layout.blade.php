@@ -325,13 +325,14 @@ Use search to find needed section.
     <div id="content-wrapper">
 
         <ul class="breadcrumb breadcrumb-page">
-            <div class="breadcrumb-label text-light-gray">You are here: </div>
+            <div class="breadcrumb-label text-light-gray">You are here:</div>
                  @section('breadcrumb')
-                    <li><a href="#">Home</a></li>
+
                 @show
+
         </ul>
 
-
+        @include('Partials/_flashdatas')
 
 
  <!-- PERMETS DE DEFINIR UN BLOC NOMMÉ CONTENT -->

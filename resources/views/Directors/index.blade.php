@@ -2,14 +2,9 @@
 
 @section('title')  liste de mes acteurs  @endsection
 
-
-
-
-
-
-@section('breadcrumb')<li><a href="#"Home></a></li><li>Actors</li><li>Index</li>  @endsection
-
-@show
+@section('breadcrumb')
+    <li><a href="#"Home></a></li><li>Directors</li><li>liste Réalisateur</li>
+@endsection
 
 
 @section('css')  
@@ -24,15 +19,24 @@
     <div class="table-info">
         <div class="table-header">
             <div class="table-caption">
-                Actors
+                Directors
             </div>
         </div>
         <table class="table table-bordered">
             <thead>
+
             <tr>
                 <th>id</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+
+                <th>Photos</th>
+
+                <th>Noms</th>
+
+                <th>Ville</th>
+
+                <th>Date de naissance</th>
+
+                <th>Actions</th>
 
             </tr>
             </thead>
@@ -41,9 +45,27 @@
             @foreach($directors as $director)
 
                 <tr>
-                    <td>{{ $director->id}}</td>
-                    <td>{{ $director->firstname }}</td>
-                    <td>{{ $director->lastname }}</td>
+                    <td>{{ $director->id }}</td>
+
+                    <td class ="col-lg-1">
+
+                        <a href="{{ route('directors.read',['id' =>$director->id]) }}">
+                            <img src="{{ $director->image }}" class="img-responsive" alt="Responsive image">
+                        </a>
+
+                    </td>
+                    <td>{{ $director->firstname }}{{ $director->lastname }}</td>
+
+                    <td>{{ $director->city }}</td>
+
+                    <td>{{ $director->dob }}</td>
+
+                    <td>
+                        <a href="" class="btn btn-primary btn-sm"><i class="fa fa-eye">  Voir</i></a>
+                        <a href="{{ route('directors.delete',['id'=>$director->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-trash">  Supprimer</i></a>
+
+                    </td>
+
 
                 </tr>
 

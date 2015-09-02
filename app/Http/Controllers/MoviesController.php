@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
-
+use App\Model\Movies;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 /**
  * Class ActorsController
  * @package App\Http\Controllers
@@ -16,9 +17,17 @@ class MoviesController extends Controller{
 
 
     public function index(){
-        return view('Movies/index');
+
+        $datas =[
+
+            "movies" => Movies::all()
+        ];
+
+        return view('Movies/index',$datas);
 
     }
+
+
     public function create(){
         return view('Movies/create');
 
@@ -27,8 +36,13 @@ class MoviesController extends Controller{
     /**
      *  page read
      */
-    public function read($id){
-        return view('Movies/read',['id'=>$id]);
+    public function read($id = null){
+
+        $datas = [
+
+            'movie' => Movies::find($id)];
+
+        return view('Movies/read',$datas);
 
     }
 
@@ -44,7 +58,13 @@ class MoviesController extends Controller{
      *  page Delete
      */
     public function delete($id){
-        return redirect('/movies/index',['id'=>$id]); //redirection vers l'index
+
+        $movie = Movies::find($id);
+        $movie->delete();
+
+        Session::flash('success',"le film {$movie->title} a bien été supprimé");
+
+        return Redirect::route('movies.index');
 
     }
 

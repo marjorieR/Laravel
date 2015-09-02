@@ -1,56 +1,86 @@
-<!DOCTYPE html>
+@extends('layout')
 
-<html>
-<head>
+@section('title')  liste de mes Films  @endsection
 
-    <title>Index</title>
+@section('breadcrumb')
+    <li><a href="#"Home></a></li><li>Films</li><li>liste Films</li>
+@endsection
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
-    <style>
-        html, body {
-            height: 100%;
-        }
+@section('css')  
+@parent
+<link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+@endsection
 
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            display: table;
-            font-weight: 100;
-            font-family: 'Lato';
-        }
 
-        .container {
-            text-align: center;
-            display: table-cell;
-            vertical-align: middle;
-        }
 
-        .content {
-            text-align: center;
-            display: inline-block;
-        }
+@section('content')
 
-        .title {
-            font-size: 96px;
-        }
-    </style>
+    <div class="table-info">
+        <div class="table-header">
+            <div class="table-caption">
+               Films
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>Photos</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Durée</th>
+                <th>Actions</th>
 
-</head>
+            </tr>
+            </thead>
+            <tbody>
 
-<body>
+            @foreach($movies as $movie)
 
-<div class="container">
+                <tr>
+                    <td>{{ $movie->id }}</td>
 
-    <div class="content">
+                    <td class ="col-lg-1">
 
-        <div class="title">Index</div>
+                        <a href="{{ route('movies.read',['id' =>$movie->id]) }}">
+                            <img src="{{ $movie->image }}" class="img-responsive" alt="Responsive image">
+                        </a>
 
+                    </td>
+
+                    <td>{{ $movie->title }}</td>
+
+
+                    <td>
+
+                        {{ str_limit( strip_tags($movie->description),$limit =100, $end = '...')}}
+
+                    </td>
+
+                    <td>{{ $movie->duree }}</td>
+
+                    <td>
+                        <a href="" class="btn btn-primary btn-sm"><i class="fa fa-eye">  Voir</i></a>
+                        <a href="{{ route('movies.delete',['id'=>$movie->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-trash">  Supprimer</i></a>
+
+                    </td>
+
+                </tr>
+
+
+            @endforeach
+
+            </tbody>
+        </table>
+        <div class="table-footer">
+            Footer
+        </div>
     </div>
 
-</div>
 
-</body>
 
-</html>
+
+
+@endsection
+

@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Model\Directors;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 
 /**
@@ -17,7 +20,13 @@ class DirectorsController extends Controller{
 
 
     public function index(){
-        return view('Directors/index');
+
+        $datas =[
+
+            "directors" => Directors::all()
+        ];
+
+        return view('Directors/index',$datas);
 
     }
 
@@ -33,8 +42,14 @@ class DirectorsController extends Controller{
     /**
      *  page read
      */
-    public function read($id){
-        return view('Directors/read',['id'=>$id]);
+    public function read($id = null){
+
+        $datas = [
+            'director' => Directors::find($id)
+        ];
+
+
+        return view('Directors/read',$datas);
 
     }
 
@@ -50,7 +65,13 @@ class DirectorsController extends Controller{
      *  page Delete
      */
     public function delete($id){
-        return redirect('/directors/index',['id'=>$id]);//redirection vers l'index
+
+        $director = Directors::find($id);
+        $director->delete();
+
+        Session::flash('success',"le realisateur {$director->firstname}{$director->lastname} a bien été supprimé");
+
+        return Redirect::route('directors.index');
 
     }
 

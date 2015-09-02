@@ -1,57 +1,25 @@
-<!DOCTYPE html>
+@extends('layout')
 
-<html>
-<head>
 
-    <title>Read</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+@section ('title')  Biography  @endsection
 
-    <style>
-        html, body {
-            height: 100%;
-        }
+@section('breadcrumb')
+    <li><a href="#"Home></a></li><li>Movies</li><li>biographie</li>
+@endsection
 
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            display: table;
-            font-weight: 100;
-            font-family: 'Lato';
-        }
 
-        .container {
-            text-align: center;
-            display: table-cell;
-            vertical-align: middle;
-        }
+@section('css')  
+@parent
+<link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+@endsection
 
-        .content {
-            text-align: center;
-            display: inline-block;
-        }
 
-        .title {
-            font-size: 96px;
-        }
-    </style>
 
-</head>
+@section('content')
 
-<body>
+    {{ $movie->title }}
 
-<div class="container">
+    {{ strip_tags($movie->synopsis) }}
 
-    <div class="content">
-
-        <div class="title">Read</div>
-        <h1>{{ $id }}</h1>
-
-    </div>
-
-</div>
-
-</body>
-
-</html>
+@endsection

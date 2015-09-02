@@ -56,7 +56,7 @@ Route::get('/create', ['uses' => 'ActorsController@create', 'as' => 'actors.crea
 
 /** lit un seul actors */
 
-Route::get('/read/{id}', ['uses' => 'ActorsController@read'])
+Route::get('/read/{id}', ['uses' => 'ActorsController@read', 'as' => 'actors.read'])
 
     -> where ('id','[0-9]+');
 
@@ -70,7 +70,7 @@ Route::get('/update/{id}', ['uses' => 'ActorsController@update'])
 
 /** supprime un seul acteurs */
 
-Route::get('/delete/{id}', ['uses' => 'ActorsController@delete'])
+Route::get('/delete/{id}', ['uses' => 'ActorsController@delete', 'as' => 'actors.delete'])
 
     -> where ('id','[0-9]+');
 });
@@ -86,32 +86,34 @@ Route::get('/index/{ville?}', ['uses' => 'DirectorsController@index', 'as' => 'd
 
 
 
-Route::get('/create', ['uses' => 'DirectorsController@create']);
+Route::get('/create', ['uses' => 'DirectorsController@create', 'as' => 'directors.create']);
 
-Route::get('/read/{id}', ['uses' => 'DirectorsController@read'])
+Route::get('/read/{id}', ['uses' => 'DirectorsController@read', 'as' => 'directors.read'])
     -> where ('id','[0-9]+');
 
 Route::get('/update/{id}', ['uses' => 'DirectorsController@update'])
     -> where ('id','[0-9]+');
 
-Route::get('/delete/{id}', ['uses' => 'DirectorsController@delete'])
+Route::get('/delete/{id}', ['uses' => 'DirectorsController@delete', 'as' => 'directors.delete'])
     -> where ('id','[0-9]+');
 });
 
 
 /** pages CRUD Movies */
+
 Route::group(['prefix'=>'movies'], function(){
 
-    Route::get('/index', ['uses' => 'MoviesController@index']);
-    Route::get('/create', ['uses' => 'MoviesController@create']);
+    Route::get('/index', ['uses' => 'MoviesController@index', 'as' => 'movies.index']);
 
-    Route::get('/read/{id}', ['uses' => 'MoviesController@read'])
+    Route::get('/create', ['uses' => 'MoviesController@create', 'as' => 'movies.create']);
+
+    Route::get('/read/{id}', ['uses' => 'MoviesController@read', 'as' => 'movies.read'])
         -> where ('id','[0-9]+');
 
     Route::get('/update/{id}', ['uses' => 'MoviesController@update'])
         -> where ('id','[0-9]+');
 
-    Route::get('/delete/{id}', ['uses' => 'MoviesController@delete'])
+    Route::get('/delete/{id}', ['uses' => 'MoviesController@delete', 'as' => 'movies.delete'])
         -> where ('id','[0-9]+');
 
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Model\Actors;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 
 /**
@@ -17,8 +19,6 @@ class ActorsController extends Controller{
 
 
     public function index(){
-
-
 
         $datas =[
 
@@ -38,9 +38,13 @@ class ActorsController extends Controller{
     /**
      *  page read
      */
-    public function read($id){
+    public function read($id = null){
 
-        return view('Actors/read',['id'=>$id]);
+        $datas = [
+
+            'actor' => Actors::find($id)];
+
+        return view('Actors/read',$datas);
 
     }
 
@@ -57,7 +61,14 @@ class ActorsController extends Controller{
      *  page Delete
      */
     public function delete($id){
-        return redirect('/actors/index',['id'=>$id]); //redirection vers l'index
+        // supprimer acteur
+        $actor = Actors::find($id);
+        $actor->delete();
+
+        // j'écris un session un message flash
+       Session::flash('success',"l'acteur {$actor->firstname}{$actor->lastname} a bien été supprimé");
+
+        return Redirect::route('actors.index');
 
     }
 

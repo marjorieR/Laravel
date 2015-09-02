@@ -31,8 +31,8 @@
     <li class="dropdown">
        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Films</a>
         <ul class="dropdown-menu">
-            <li><a href="#">Voir les films</a></li>
-            <li><a href="#">Créer un film</a></li>
+            <li><a href="{{ route('movies.index') }}">Voir les Films</a></li>
+            <li><a href="{{ route('movies.create') }}">Créer un Films</a></li>
 
         </ul>
 
@@ -54,6 +54,7 @@
             <li><a href="{{ route('actors.index') }}">Voir les acteurs</a></li>
             <li><a href="{{ route('actors.create') }}">Créer un acteurs</a></li>
 
+
         </ul>
 
     </li>
@@ -61,8 +62,8 @@
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Réalisateurs</a>
         <ul class="dropdown-menu">
-            <li><a href="#">Voir les réalisateurs</a></li>
-            <li><a href="#">Créer un réalisateurs</a></li>
+            <li><a href="{{ route('directors.index') }}">Voir les réalisateurs</a></li>
+            <li><a href="{{ route('directors.create') }}">Créer un réalisateurs</a></li>
 
         </ul>
 
