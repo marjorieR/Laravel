@@ -16,14 +16,20 @@ class MoviesController extends Controller{
      */
 
 
-    public function index(){
+    public function index($bo="*", $visibilite="*", $distributeur="*"){
 
-        $datas =[
-
-            "movies" => Movies::all()
-        ];
-
-        return view('Movies/index',$datas);
+        $movies = DB::table('movies');
+        if ($bo != "*") {
+            $movies->where('bo', '=', $bo);
+        }
+        if ($visibilite != "*") {
+            $movies->where('visible', '=', $visibilite);
+        }
+        if ($distributeur != "*") {
+            $movies->where('distributeur', '=', $distributeur);
+        }
+        //retourne le resultat
+        $movies = $movies->get();
 
     }
 
@@ -71,4 +77,46 @@ class MoviesController extends Controller{
     public function search($languages= "fr",$visible = 1,$duree = 2){
         return view('/Movies/search',['languages'=>$languages,'visible'=>$visible,'duree'=>$duree]);
     }
+
+    public function activation($id){
+
+        $movie = Movies::find($id);
+
+
+        if($movie-> visible == 1){
+            $movie-> visible= 0;
+        }else{
+            $movie->visible=1;
+        }
+
+        $movie -> save();
+
+        Session::flash('success',"votre film a était mis a jour");
+
+        return Redirect::route('movies.index');
+
+    }
+
+
+
+    public function cover($id){
+
+        $movie = Movies::find($id);
+
+
+        if($movie-> cover == 1){
+            $movie-> cover= 0;
+        }else{
+            $movie-> cover=1;
+        }
+
+        $movie -> save();
+
+        Session::flash('success',"cover a était mis a jour");
+
+        return Redirect::route('movies.index');
+    }
+
+
+
 }

@@ -11,10 +11,9 @@
 <!-- Main navbar header -->
 <div class="navbar-header">
 
-    <!-- Logo -->
     <a href="index.html" class="navbar-brand">
-        <div><img alt="Pixel Admin" src="assets/images/pixel-admin/main-navbar-logo.png"></div>
-        PixelAdmin
+
+        Cinéma
     </a>
 
     <!-- Main navbar toggle -->
@@ -25,11 +24,17 @@
 <div id="main-navbar-collapse" class="collapse navbar-collapse main-navbar-collapse">
 <div>
 <ul class="nav navbar-nav">
-    <li>
-        <a href="#">Home</a>
+
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-home"></i></i> Home</a>
+        <ul class="dropdown-menu">
+
+
+        </ul>
+
     </li>
     <li class="dropdown">
-       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Films</a>
+       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-film"></i> Films</a>
         <ul class="dropdown-menu">
             <li><a href="{{ route('movies.index') }}">Voir les Films</a></li>
             <li><a href="{{ route('movies.create') }}">Créer un Films</a></li>
@@ -39,7 +44,7 @@
     </li>
 
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories</a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-list"></i>  Categories</a>
         <ul class="dropdown-menu">
             <li><a href="#">Voir les categories</a></li>
             <li><a href="#">Créer une categories</a></li>
@@ -49,7 +54,7 @@
     </li>
 
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Acteurs</a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i>  Acteurs</a>
         <ul class="dropdown-menu">
             <li><a href="{{ route('actors.index') }}">Voir les acteurs</a></li>
             <li><a href="{{ route('actors.create') }}">Créer un acteurs</a></li>
@@ -60,7 +65,7 @@
     </li>
 
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Réalisateurs</a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-video-camera"></i> Réalisateurs</a>
         <ul class="dropdown-menu">
             <li><a href="{{ route('directors.index') }}">Voir les réalisateurs</a></li>
             <li><a href="{{ route('directors.create') }}">Créer un réalisateurs</a></li>
@@ -70,10 +75,10 @@
     </li>
 
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Useurs</a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>  Useurs</a>
         <ul class="dropdown-menu">
-            <li><a href="#">Voir les utilisateurs</a></li>
-            <li><a href="#">Créer un utilisateurs</a></li>
+            <li><a href="{{ route('users.index') }}">Voir les utilisateurs</a></li>
+            <li><a href="{{ route('users.create') }}">Créer un utilisateurs</a></li>
 
         </ul>
 

@@ -1,15 +1,38 @@
 @extends('layout')
 
+
 @section('title')  liste de mes acteurs  @endsection
 
-@section('breadcrumb')
-    <li><a href="#"Home></a></li><li>Directors</li><li>liste Réalisateur</li>
+
+@section('breadscrumb')
+
+    <li><a href="#">Home</a></li>
+
+    <li class="active"><a href="#">Réalisateurs</a></li>
+
+    <li class="active"><a href="#"><strong>Liste</strong></a></li>
+@show
+
+
+
+@section('css')
+     
+@parent
+
+<link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+
 @endsection
 
 
-@section('css')  
-@parent
-<link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+@section('subtitle')
+
+    <div class="page-header">
+        <h1>
+            <i class="fa fa-video-camera page-header-icon"></i>
+            Liste de mes Réalisateurs
+        </h1>
+    </div>
+
 @endsection
 
 

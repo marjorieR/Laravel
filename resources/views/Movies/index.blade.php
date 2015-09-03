@@ -2,15 +2,33 @@
 
 @section('title')  liste de mes Films  @endsection
 
-@section('breadcrumb')
-    <li><a href="#"Home></a></li><li>Films</li><li>liste Films</li>
+
+
+@section('subtitle')
+    <div class="page-header">
+        <h1>
+            <i class="fa fa-film page-header-icon"></i>
+            Liste de mes films
+        </h1>
+    </div>
 @endsection
+
+
+
+@section('breadscrumb')
+    <li><a href="#">Home</a></li>
+    <li class="active"><a href="#">Films</a></li>
+    <li class="active"><a href="#"><strong>Liste</strong></a></li>
+@show
 
 
 @section('css')  
 @parent
 <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+
 @endsection
+
+
 
 
 
@@ -18,21 +36,42 @@
 
     <div class="table-info">
         <div class="table-header">
-            <div class="table-caption">
-               Films
+            <div class="table-caption">Films
+
+                <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                    <a href="" class="active btn btn-info btn-sm"><i class="fa fa-language">  Tous</i></a>
+                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-language">  VO</i></a>
+                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-language">  VOST</i></a>
+                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-language">  VOSTFR</i></a>
+                </div>
+
+                <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-eye">  Tous</i></a>
+                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-eye">  Visble</i></a>
+                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-eye-slash">  Invisible</i></a>
+                </div>
+
+                <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-language">  Tous</i></a>
+                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-language">  Warner-Bros</i></a>
+                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-language">  HBO</i></a>
+                </div>
+
+
             </div>
         </div>
         <table class="table table-bordered">
             <thead>
-            <tr>
-                <th>id</th>
-                <th>Photos</th>
-                <th>Titre</th>
-                <th>Description</th>
-                <th>Durée</th>
-                <th>Actions</th>
-
-            </tr>
+                <tr>
+                    <th>id</th>
+                    <th>Photos</th>
+                    <th>Activation</th>
+                    <th>Cover</th>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Durée</th>
+                    <th>Actions</th>
+                </tr>
             </thead>
             <tbody>
 
@@ -48,6 +87,39 @@
                         </a>
 
                     </td>
+
+                    <td>
+
+                       <a href="{{route('movies.activation',['id'=>$movie->id])}}">
+
+                           @if($movie-> visible ==1)
+
+                                <i class="fa fa-check-square-o"></i>
+
+
+                           @else
+
+                                <i class="fa fa-check-square"></i>
+
+
+                           @endif</a>
+                    </td>
+
+                    <td>
+
+                        <a href="{{route('movies.cover',['id'=>$movie->id])}}">
+
+                            @if($movie-> cover ==1)
+
+                                <i class="fa fa-star-o"></i>
+
+
+                            @else
+
+                                <i class="fa fa-star"></i>
+
+
+                            @endif</a></td>
 
                     <td>{{ $movie->title }}</td>
 

@@ -46,6 +46,8 @@ Use search to find needed section.
     <link href="{{ asset('css/widgets.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/rtl.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/themes.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/style2.css') }}" rel="stylesheet" type="text/css">
+
     @show
 
     <!--[if lt IE 9]>
@@ -123,7 +125,7 @@ Use search to find needed section.
 </div>
 <ul class="navigation">
     <li>
-        <a href="index.html"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text">Dashboard</span></a>
+        <a href="index.html"><i class="menu-icon fa fa-dashboard"></i><span class="mm-text"></span></a>
     </li>
     <li class="mm-dropdown">
         <a href="#"><i class="menu-icon fa fa-th"></i><span class="mm-text">Layouts</span><span class="label label-warning">Updated</span></a>
@@ -325,22 +327,31 @@ Use search to find needed section.
     <div id="content-wrapper">
 
         <ul class="breadcrumb breadcrumb-page">
-            <div class="breadcrumb-label text-light-gray">You are here:</div>
-                 @section('breadcrumb')
-
-                @show
-
+            <div class="breadcrumb-label text-light-gray">You are here: </div>
+            @section('breadscrumb')
+                <li><a href="#">Home</a></li>
+            @show
         </ul>
+
+        @section('subtitle')
+            <h1>Titre par defaut</h1>
+            @show
 
         @include('Partials/_flashdatas')
 
 
- <!-- PERMETS DE DEFINIR UN BLOC NOMMÉ CONTENT -->
         @yield('content')
 
+    </div>
 
 
-</div> <!-- / #content-wrapper -->
+
+ <!-- PERMETS DE DEFINIR UN BLOC NOMMÉ CONTENT -->
+
+
+
+
+ <!-- / #content-wrapper -->
 <div id="main-menu-bg"></div>
 
 

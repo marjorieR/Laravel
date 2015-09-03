@@ -2,14 +2,25 @@
 
 @section('title')  liste de mes acteurs  @endsection
 
-@section('breadcrumb')
-    <li><a href="#"Home></a></li><li>Actors</li><li>liste acteurs</li>
-@endsection
+@section('breadscrumb')
+    <li><a href="#">Home</a></li>
+    <li class="active"><a href="#">Actors</a></li>
+    <li class="active"><a href="#"><strong>Liste</strong></a></li>
+@show
 
 
 @section('css')  
     @parent
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+@endsection
+
+@section('subtitle')
+    <div class="page-header">
+        <h1>
+            <i class="fa fa-users page-header-icon"></i>
+            Liste de mes acteurs
+        </h1>
+    </div>
 @endsection
 
 
@@ -27,6 +38,7 @@
             <tr>
                 <th>id</th>
                 <th>Photos</th>
+
                 <th>Noms</th>
                 <th>Ville</th>
                 <th>Date de naissance</th>
@@ -48,6 +60,7 @@
                         </a>
                     </td>
 
+
                     <td>{{ $actor->firstname }}{{ $actor->lastname }}</td>
 
                     <td>{{ $actor->city }}</td>
@@ -56,8 +69,8 @@
 
 
                     <td>
-                        <a href="" class="btn btn-primary btn-sm"><i class="fa fa-search">Voir</i></a></br>
-                        <a href="{{ route('actors.delete',['id'=>$actor->id]) }}" class="btn btn-danger"><i class="fa fa-trash">Supprimer</i></a>
+                        <a href="" class="btn btn-primary btn-sm"><i class="fa fa-search">  Voir</i></a>
+                        <a href="{{ route('actors.delete',['id'=>$actor->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-trash">  Supprimer</i></a>
 
                     </td>
 

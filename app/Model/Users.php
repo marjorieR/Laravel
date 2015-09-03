@@ -8,12 +8,8 @@ use Illuminate\Database\Eloquent\Model;
  * Class Actors represente la table actors
  * @package App\Model
  */
-class Movies extends Model{
+class Users extends Model{
 
 
-    protected $table = 'movies';
-
-    public $timestamps = false;
-
-
+    protected $table = 'user';
 }
