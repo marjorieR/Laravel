@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8e39415b-198b-4a64-8651-56a6c301f32b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Model/Users.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/Users/index.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/Pages/search.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/css/style2.css" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/User/index.blade.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/User/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/Users/create.blade.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/User/read.blade.php" afterPath="$PROJECT_DIR$/resources/views/Users/read.blade.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/User/search.blade.php" afterPath="$PROJECT_DIR$/resources/views/Users/search.blade.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/User/update.blade.php" afterPath="$PROJECT_DIR$/resources/views/Users/update.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Model/Movies.php" afterPath="$PROJECT_DIR$/app/Model/Movies.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/MoviesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/MoviesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/PagesController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/PagesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Partials/_topmenu.blade.php" afterPath="$PROJECT_DIR$/resources/views/Partials/_topmenu.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/blade.xml" afterPath="$PROJECT_DIR$/.idea/blade.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Actors/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/Actors/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Directors/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/Directors/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Movies/create.blade.php" afterPath="$PROJECT_DIR$/resources/views/Movies/create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Actors/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/Actors/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Directors/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/Directors/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Movies/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/Movies/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layout.blade.php" afterPath="$PROJECT_DIR$/resources/views/layout.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="8e39415b-198b-4a64-8651-56a6c301f32b" name="Default" comment="" />
     <ignored path="Laravel.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -80,8 +55,8 @@
       <file leaf-file-name="PagesController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PagesController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6798906">
-              <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.2366621">
+              <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -920,8 +895,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PagesController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6798906">
-          <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.2366621">
+          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
           <folding />
         </state>
       </provider>

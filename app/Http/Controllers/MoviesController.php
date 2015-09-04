@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Model\Movies;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+
+
 /**
  * Class ActorsController
  * @package App\Http\Controllers
@@ -28,8 +32,44 @@ class MoviesController extends Controller{
         if ($distributeur != "*") {
             $movies->where('distributeur', '=', $distributeur);
         }
+
+        $nbfilms = DB::table('movies')->count();
+
+        $filmscover = DB::table('movies')-> where('cover',1)-> count();
+
+        $filmsav = DB::table('movies')-> where('date_release', '>', DB::raw('DATE_ADD(NOW(),INTERVAL 1 DAY)'))-> count();
+
+        //dump( $filmsav);
+        $invisible = DB::table('movies')-> where('visible',0)-> count();
+
+        $budget = DB::table('movies')->where('annee','=', 2015)-> sum('budget');
+
+
+
+
+        //dump( $filmscover = DB::table('movies')->count("cover"1));
+
         //retourne le resultat
         $movies = $movies->get();
+
+        $data = [
+            "movies" => $movies,
+            "bo" => $bo,
+            "visibilite" => $visibilite,
+            "distributeur" => $distributeur,
+            "nbfilms" => $nbfilms,
+            "filmscover"=> $filmscover,
+            "invisible"=> $invisible,
+            "filmsav"=> $filmsav,
+            "budget"=> $budget
+
+
+
+
+        ];
+
+
+        return view('Movies/index', $data);
 
     }
 

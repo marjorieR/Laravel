@@ -23,6 +23,7 @@
 
 
 @section('css')  
+
 @parent
 <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
 
@@ -31,39 +32,144 @@
 
 
 
-
 @section('content')
 
-    <div class="table-info">
-        <div class="table-header">
-            <div class="table-caption">Films
 
-                <div class="btn-group btn-group-sm" role="group" aria-label="...">
-                    <a href="" class="active btn btn-info btn-sm"><i class="fa fa-language">  Tous</i></a>
-                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-language">  VO</i></a>
-                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-language">  VOST</i></a>
-                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-language">  VOSTFR</i></a>
-                </div>
-
-                <div class="btn-group btn-group-sm" role="group" aria-label="...">
-                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-eye">  Tous</i></a>
-                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-eye">  Visble</i></a>
-                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-eye-slash">  Invisible</i></a>
-                </div>
-
-                <div class="btn-group btn-group-sm" role="group" aria-label="...">
-                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-language">  Tous</i></a>
-                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-language">  Warner-Bros</i></a>
-                    <a href="" class="btn btn-info btn-sm"><i class="fa fa-language">  HBO</i></a>
-                </div>
-
-
+    <div class="row">
+        <div class="col-md-7">
+            <div class="stat-panel">
+                <!-- Success background, bordered, without top and bottom borders, without left border, without padding, vertically and horizontally centered text, large text -->
+                <a href="" class="stat-cell col-xs-5 bg-info bordered no-border-vr no-border-l no-padding valign-middle text-center text-lg">
+                    {{ $nbfilms  }}
+                    <i class="fa fa-film"></i>&nbsp;&nbsp;<strong></strong>
+                </a> <!-- /.stat-cell -->
+                <!-- Without padding, extra small text -->
+                <div class="stat-cell col-xs-7 no-padding valign-middle">
+                    <!-- Add parent div.stat-rows if you want build nested rows -->
+                    <div class="stat-rows">
+                        <div class="stat-row">
+                            <!-- Success background, small padding, vertically aligned text -->
+                            <a href="#" class="stat-cell bg-info padding-sm valign-middle">
+                              {{ $filmscover  }} Films mis en avant
+                                <i class="fa fa-star pull-right"></i>
+                            </a>
+                        </div>
+                        <div class="stat-row">
+                            <!-- Success darken background, small padding, vertically aligned text -->
+                            <a href="#" class="stat-cell bg-info darken padding-sm valign-middle">
+                                  {{ $filmsav}} Films A Venir
+                                <i class="fa fa-film pull-right"></i>
+                            </a>
+                        </div>
+                        <div class="stat-row">
+                            <!-- Success darker background, small padding, vertically aligned text -->
+                            <a href="#" class="stat-cell bg-info darker padding-sm valign-middle">
+                                {{ $invisible }} films inactifs
+                                <i class="fa fa-eye-slash pull-right"></i>
+                            </a>
+                        </div>
+                    </div> <!-- /.stat-rows -->
+                </div> <!-- /.stat-cell -->
             </div>
         </div>
+
+
+
+
+        <div class="col-md-5">
+
+            <div class="stat-panel">
+                <!-- Success background. vertically centered text -->
+                <div class="stat-cell bg-success valign-middle">
+                    <!-- Stat panel bg icon -->
+                    <i class="fa fa-usd bg-icon"></i>
+                    <!-- Extra large text -->
+                    <span class="text-xlg"><strong> {{ $budget }} Euros</strong></span><br>
+                    <!-- Big text -->
+                    <span class="text-bg">Budget</span><br>
+                    <!-- Small text -->
+                    <span class="text-sm">Total de l'annee 2015</span>
+                </div> <!-- /.stat-cell -->
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+            <div class="table-info">
+
+                <div class="table-header">
+
+                    <div class="table-caption">Films
+
+                        <div class="btn-group btn-group-sm" role="group" aria-label="...">
+
+                            <a href="{{route('movies.index') }}" class="@if($bo == "*") active @endif btn btn-info btn-sm">
+
+                                <i class="fa fa-language">  Tous</i></a>
+
+                            <a href="{{route('movies.index', ['bo' =>'VO']) }}" class="@if($bo == "VO") active @endif  btn btn-info btn-sm">
+
+                                <i class="fa fa-language">  VO</i></a>
+
+                            <a href="{{route('movies.index',['bo' =>'VOST'])}}" class="@if($bo == "VOST") active @endif btn btn-info btn-sm">
+
+                                <i class="fa fa-language">  VOST</i></a>
+
+                            <a href="{{route('movies.index',['bo' =>'VOSTFR'])}}" class="@if($bo == "VOSTFR") active @endif btn btn-info btn-sm">
+
+                                <i class="fa fa-language">  VOSTFR</i></a>
+
+                        </div>
+
+                        <div class="btn-group btn-group-sm" role="group" aria-label="...">
+
+                            <a href="{{route('movies.index') }}" class="@if($visibilite  == "*") active @endif btn btn-info btn-sm">
+
+                                <i class="fa fa-eye">  Tous</i></a>
+
+                            <a href="{{route('movies.index', ['visibilite' => 1, "bo" => "*"]) }}" class=" @if ($visibilite == 1) active @endif btn btn-info btn-sm">
+
+                                <i class="fa fa-eye">  Visble</i></a>
+
+                            <a href="{{route('movies.index', ['visibilite' => 0, "bo" => "*"]) }}" class=" @if ($visibilite == 0) active @endif btn btn-info btn-sm">
+
+                                <i class="fa fa-eye-slash">  Invisible</i></a>
+                        </div>
+
+                        <div class="btn-group btn-group-sm" role="group" aria-label="...">
+
+                            <a href="{{ route('movies.index') }}" class=" @if($distributeur == "*") active @endif btn btn-info btn-sm">
+
+                                <i class="fa fa-language">  Tous</i></a>
+
+                            <a href="{{ route('movies.index'), ['distributeur' => 'Warner_Bross', "bo" => "*", 'visibilite' =>"*"]}}" class=" @if($distributeur == "Warner_Bross") active @endif btn btn-info btn-sm">
+                                <i class="fa fa-language">  Warner-Bros</i></a>
+
+                            <a href="{{ route('movies.index'), ['distributeur' => 'HBO', "bo" => "*", 'visibilite' => "*" ] }}" class=" @if($distributeur == "HBO") active @endif btn btn-info btn-sm">
+                                <i class="fa fa-language">  HBO</i></a>
+
+                        </div>
+
+                       
+
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>id</th>
+                    <th>#</th>
                     <th>Photos</th>
                     <th>Activation</th>
                     <th>Cover</th>
@@ -88,7 +194,7 @@
 
                     </td>
 
-                    <td>
+                    <td class ="col-lg-1">
 
                        <a href="{{route('movies.activation',['id'=>$movie->id])}}">
 
@@ -121,20 +227,21 @@
 
                             @endif</a></td>
 
-                    <td>{{ $movie->title }}</td>
+                    <td class ="col-lg-2">{{ $movie->title }}</td>
 
 
-                    <td>
+                    <td class ="col-lg-3">
 
                         {{ str_limit( strip_tags($movie->description),$limit =100, $end = '...')}}
 
                     </td>
 
-                    <td>{{ $movie->duree }}</td>
+                    <td>{{ $movie->duree }}h</td>
 
                     <td>
                         <a href="" class="btn btn-primary btn-sm"><i class="fa fa-eye">  Voir</i></a>
                         <a href="{{ route('movies.delete',['id'=>$movie->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-trash">  Supprimer</i></a>
+
 
                     </td>
 

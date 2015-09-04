@@ -114,24 +114,31 @@ Route::get('/delete/{id}', ['uses' => 'DirectorsController@delete', 'as' => 'dir
 
 Route::group(['prefix'=>'movies'], function(){
 
-    Route::get('/index{bo?}/{visibilite?}/{distributeur?}{', ['uses' => 'MoviesController@index', 'as' => 'movies.index']);
+    Route::get('/index/{bo?}/{visibilite?}/{distributeur?}', ['uses' => 'MoviesController@index', 'as' => 'movies.index']);
+
 
     Route::get('/create', ['uses' => 'MoviesController@create', 'as' => 'movies.create']);
+
 
     Route::get('/read/{id}', ['uses' => 'MoviesController@read', 'as' => 'movies.read'])
         -> where ('id','[0-9]+');
 
+
     Route::get('/update/{id}', ['uses' => 'MoviesController@update'])
         -> where ('id','[0-9]+');
+
 
     Route::get('/delete/{id}', ['uses' => 'MoviesController@delete', 'as' => 'movies.delete'])
         -> where ('id','[0-9]+');
 
+
     Route::get('/activation/{id}', ['uses' => 'MoviesController@activation', 'as' => 'movies.activation'])
         -> where( 'id','[0-9]+');
 
+
     Route::get('/cover/{id}' ,['uses' => 'MoviesController@cover', 'as' => 'movies.cover'])
         -> where( 'id','[0-9]+');
+
 
 
     Route::get('/search/{languages?}-{visible?}-{duree?}', [ 'uses' => 'MoviesController@search'])
