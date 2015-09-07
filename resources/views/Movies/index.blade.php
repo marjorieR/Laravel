@@ -102,7 +102,7 @@
 
                 <div class="table-header">
 
-                    <div class="table-caption">Films
+
 
                         <div class="btn-group btn-group-sm" role="group" aria-label="...">
 
@@ -151,10 +151,26 @@
                             <a href="{{ route('movies.index'), ['distributeur' => 'HBO', "bo" => "*", 'visibilite' => "*" ] }}" class=" @if($distributeur == "HBO") active @endif btn btn-info btn-sm">
                                 <i class="fa fa-language">  HBO</i></a>
 
+
+
                         </div>
 
-                       
 
+
+
+
+
+                    <div class="panel-heading-controls">
+
+                        <select class="form-control input-xs">
+
+                            <option>Actions</option>
+                            <option value="1">Supprimer</option>
+                            <option value="2">Activer</option>
+                            <option value="3">Desactiver</option>
+                        </select>
+
+                        <button class=" pull-right btn btn-info btn-xs">OK</button>
 
                     </div>
 
@@ -184,11 +200,11 @@
             @foreach($movies as $movie)
 
                 <tr>
-                    <td>{{ $movie->id }}</td>
+                    <td class="col-lg-1"><input type="checkbox"> {{ $movie->id }}</td>
 
                     <td class ="col-lg-1">
 
-                        <a href="{{ route('movies.read',['id' =>$movie->id]) }}">
+                        <a href="{{ route('movies.read',['id' => $movie->id]) }}">
                             <img src="{{ $movie->image }}" class="img-responsive" alt="Responsive image">
                         </a>
 
@@ -196,7 +212,7 @@
 
                     <td class ="col-lg-1">
 
-                       <a href="{{route('movies.activation',['id'=>$movie->id])}}">
+                       <a href="{{route('movies.activation',['id'=> $movie->id])}}">
 
                            @if($movie-> visible ==1)
 
@@ -241,7 +257,8 @@
                     <td>
                         <a href="" class="btn btn-primary btn-sm"><i class="fa fa-eye">  Voir</i></a>
                         <a href="{{ route('movies.delete',['id'=>$movie->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-trash">  Supprimer</i></a>
-
+                        <a href="" class="btn btn-xs btn-primary"><i class="fa fa-thumbs-up"></i> Note de presse <small>({{ $movie->note_presse }}/5)</small></a>
+                        <a href="" class="btn btn-xs btn-danger"><i class="fa fa-thumbs-down"></i> Note de presse <small>({{ $movie->note_presse }}/5)</small></a>
 
                     </td>
 

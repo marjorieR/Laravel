@@ -16,10 +16,9 @@ elixir(function(mix) {
 
 
 
-    //mix.scripts([
-    //    "main.js",
-    //    "app.js"
-    //]).scriptsIn("public/js");
+    mix.scripts([
+        "app.js"
+    ]);
 
 
 });

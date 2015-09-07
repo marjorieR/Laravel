@@ -46,8 +46,8 @@
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-list"></i>  Categories</a>
         <ul class="dropdown-menu">
-            <li><a href="#">Voir les categories</a></li>
-            <li><a href="#">Créer une categories</a></li>
+            <li><a href="{{route('categories.index')}}">Voir les categories</a></li>
+            <li><a href="{{ route('categories.create') }}">Créer une categories</a></li>
 
         </ul>
 

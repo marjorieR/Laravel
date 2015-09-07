@@ -56,6 +56,12 @@ Route::get('/index/{ville?}', ['uses' => 'ActorsController@index', 'as' => 'acto
 /** creation d'un actors */
 Route::get('/create', ['uses' => 'ActorsController@create', 'as' => 'actors.create']);
 
+
+/** Reception des donnée du formulaire */
+Route::post('/post', ['uses' => 'ActorsController@store', 'as' => 'actors.post']);
+
+
+
 /** lit un seul actors */
 
 Route::get('/read/{id}', ['uses' => 'ActorsController@read', 'as' => 'actors.read'])
@@ -75,6 +81,9 @@ Route::get('/update/{id}', ['uses' => 'ActorsController@update'])
 Route::get('/delete/{id}', ['uses' => 'ActorsController@delete', 'as' => 'actors.delete'])
 
     -> where ('id','[0-9]+');
+
+
+
 });
 
 
@@ -146,7 +155,7 @@ Route::group(['prefix'=>'movies'], function(){
         -> where ('visible','0|1')
         -> where ('duree','[0-9]{1,2}');
 
-
+    Route::get('/actions', ['uses' => 'MoviesController@actions' , 'as'=>'.actions']);
 
 });
 
@@ -188,6 +197,38 @@ Route::group(['prefix'=>'users'], function() {
 });
 
 
+
+
+/** *******************************************************************************************************************/
+/** ******************************************  pages CRUD CATEGORIES *************************************************/
+/** *******************************************************************************************************************/
+
+
+Route::group(['prefix'=> 'categories'], function() {
+
+    Route::get('/index', ['uses' => 'CategoriesController@index', 'as' => 'categories.index']);
+
+    Route::get('/create', ['uses' => 'CategoriesController@create', 'as' => 'categories.create']);
+
+    Route::get('/read', ['uses' => 'CategoriesController@create', 'as' => 'categories.read']);
+
+    Route::get('/update', ['uses' => 'CategoriesController@update']);
+
+    Route::get('/delete', ['uses' => 'CategoriesController@update']);
+
+
+
+
+
+
+
+
+
+});
+
+
+
+
 Route::get('/search' ,['uses' => 'PagesController@search', 'as' => 'pages.search']);
 
 
@@ -198,7 +239,6 @@ Route::get('/search' ,['uses' => 'PagesController@search', 'as' => 'pages.search
 
 
 route::controller('cinemas','CinemasController');
-route::controller('categories','CategoriesController');
 
 
 

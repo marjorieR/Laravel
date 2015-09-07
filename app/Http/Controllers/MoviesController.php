@@ -159,4 +159,35 @@ class MoviesController extends Controller{
 
 
 
+//    public function actions(){
+//
+//
+//
+//        $movietab =[
+//
+//         if ($actions == "Supprimer") {
+//
+//
+//             foreach ($movies as $movie) {
+//                 $movie = Movies::find();
+//                 $movie->delete();
+//
+//
+//             }
+//
+//         }
+//
+//
+//       ];
+//
+
+
+
+
+
+
+
+
+
+
 }

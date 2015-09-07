@@ -50,9 +50,10 @@ Use search to find needed section.
 
     @show
 
-    <!--[if lt IE 9]>
+
+
     <script src="{{ asset('js/ie.min.js') }}"></script>
-    <![endif]-->
+
 </head>
 
 
@@ -373,6 +374,8 @@ Use search to find needed section.
 <!-- Pixel Admin's javascripts -->
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/pixel-admin.min.js') }}"></script>
+    <script src="{{ asset('js/all.js') }}"></script>
+
 
 <script type="text/javascript">
     init.push(function () {
