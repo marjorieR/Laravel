@@ -100,7 +100,12 @@ Route::group(['prefix'=>'directors'], function(){
 
 Route::get('/index/{ville?}', ['uses' => 'DirectorsController@index', 'as' => 'directors.index']);
 
+
+
 Route::get('/create', ['uses' => 'DirectorsController@create', 'as' => 'directors.create']);
+
+Route::post('/post', ['uses' => 'DirectorsController@store', 'as' => 'directors.post']);
+
 
 Route::get('/read/{id}', ['uses' => 'DirectorsController@read', 'as' => 'directors.read'])
     -> where ('id','[0-9]+');
@@ -127,6 +132,8 @@ Route::group(['prefix'=>'movies'], function(){
 
 
     Route::get('/create', ['uses' => 'MoviesController@create', 'as' => 'movies.create']);
+
+    Route::post('/post', ['uses' => 'MoviesController@store', 'as' => 'movies.post']);
 
 
     Route::get('/read/{id}', ['uses' => 'MoviesController@read', 'as' => 'movies.read'])

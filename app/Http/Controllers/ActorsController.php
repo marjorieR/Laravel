@@ -52,12 +52,26 @@ class ActorsController extends Controller{
         $actor = new Actors();
         $actor -> firstname =$request ->firstname;
         $actor -> lastname =$request ->lastname;
-        $actor -> dob =$request ->dob;
+        $actor -> dob = date_create_from_format("d/m/Y", $request->dob);
         $actor -> nationality =$request ->nationality;
         $actor -> image =$request ->image;
         $actor -> biography =$request ->biography;
         $actor -> recompenses =$request ->recompenses;
 
+
+        $filename =""; // define null
+        if($request->file('image')){
+
+            // save the name of file upload
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+
+            //move upload
+            $destinationPath = public_path() . '/uploads/actors'; //path vers public/
+            $file->move($destinationPath,$filename); // move the image file into public upload
+        }
+
+        $actor ->image =  asset("uploads/actors/". $filename);
         $actor->save();
 
         Session::flash('success',"l'acteur {$actor->firstname}{$actor->lastname} a bien été crée");

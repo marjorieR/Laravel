@@ -23,6 +23,11 @@ $(document).ready( function(){
 
             });
 
+        $('#image').pixelFileInput(
+            { placeholder:'Aucun fichier selectionné...'}
+        );
+
+
     });
 
 

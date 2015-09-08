@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 
 
-class ActorsRequest extends FormRequest{
+class DirectorsRequest extends FormRequest{
 
     public function authorize(){
 
@@ -19,11 +19,10 @@ class ActorsRequest extends FormRequest{
         return [
             'firstname' => 'required|min:3',
             'lastname' => 'required|min:3',
-            'nationality' => 'required',
-            'biography' => 'required|min:10|max:5000',
-            'recompensgues' => 'min:5|max:500',
-            'image' => 'image',
             'dob'=> 'required',
+            'biography' => 'required|min:10|max:5000',
+            'image' => 'image',
+
 
 
         ];
@@ -35,7 +34,6 @@ class ActorsRequest extends FormRequest{
             'firstname'=> 'Prénom',
             'lastname'=> 'Nom',
             'dob'=> 'Date de naissance',
-            'recompenses'=> 'Récompense',
             'biography'=> 'Biographie',
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MoviesRequest;
 use App\Model\Movies;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -74,10 +75,49 @@ class MoviesController extends Controller{
     }
 
 
-    public function create(){
+    public function create()
+    {
         return view('Movies/create');
 
     }
+
+        public function store(MoviesRequest $request){
+
+            // j'enregiste un nouvel acteur des que mon formulaire est valide ( zero erreurs)
+
+            $movie = new Movies();
+            $movie->title = $request->title;
+            $movie->synopsis= $request->synopsis;
+            $movie->image = $request->image;
+            $movie->duree = $request->duree;
+            $movie -> date_release = date_create_from_format("d/m/Y", $request->date_release);
+
+
+
+
+            $filename =""; // define null
+            if($request->file('image')){
+
+                // save the name of file upload
+                $file = $request->file('image');
+                $filename = $file->getClientOriginalName();
+
+                //move upload
+                $destinationPath = public_path() . '/uploads/movies'; //path vers public/
+                $file->move($destinationPath,$filename); // move the image file into public upload
+            }
+
+            $movie ->image =  asset("uploads/movies/". $filename);
+            $movie->save();
+
+            Session::flash('success',"le film { $movie->title}a bien été crée");
+
+            return Redirect::route('movies.index');
+
+
+        }
+
+
 
     /**
      *  page read

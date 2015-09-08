@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\DirectorsRequest;
 use App\Model\Directors;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -38,6 +39,42 @@ class DirectorsController extends Controller{
         return view('Directors/create');
 
     }
+
+    public function store(DirectorsRequest $request){
+
+        // j'enregiste un nouvel acteur des que mon formulaire est valide ( zero erreurs)
+
+        $director = new Directors();
+        $director->firstname = $request->firstname;
+        $director->lastname = $request->lastname;
+        $director->dob = date_create_from_format("d/m/Y", $request->dob);
+        $director->image = $request->image;
+        $director->biography = $request->biography;
+
+
+
+        $filename =""; // define null
+        if($request->file('image')){
+
+            // save the name of file upload
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+
+            //move upload
+            $destinationPath = public_path() . '/uploads/directors'; //path vers public/
+            $file->move($destinationPath,$filename); // move the image file into public upload
+        }
+
+        $director ->image =  asset("uploads/directors/". $filename);
+        $director->save();
+
+        Session::flash('success',"le réalisateur {$director->firstname}{$director->lastname} a bien été crée");
+
+        return Redirect::route('directors.index');
+
+
+    }
+
 
     /**
      *  page read

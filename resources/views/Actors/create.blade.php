@@ -47,7 +47,7 @@
         @endif
 
 
-        <form method="post" action="{{ route('actors.post') }}" class="panel form-horizontal">
+        <form enctype="multipart/form-data" novalidate  method="post" action="{{ route('actors.post') }}" class="panel form-horizontal">
 
             {{ csrf_field() }}
 
@@ -79,6 +79,7 @@
 
                 </div>
 
+
                 <div class="form-group">
 
                     <label for="inputPassword" class="col-sm-2 control-label">Date de naissance</label>
@@ -91,11 +92,14 @@
                 </div>
 
 
+
+
+
                 <div class="form-group">
                     <label for="inputPassword" class="col-sm-2 control-label">Images</label>
 
                     <div class="col-sm-10">
-                        <input type="text" name="image"  value="{{Input::old('image')}}" class="form-control" id="image" placeholder="Http//">
+                        <input capture="capture" accept="image/* " type="file" name="image"  value="{{Input::old('image')}}" class="form-control" id="image" placeholder="Http//">
                         @if ($errors->has('image')) <p class="help-block text-danger">{{ $errors->first('image') }}</p>@endif
                     </div>
 
@@ -138,16 +142,28 @@
                 <div class="form-group">
 
                     <label for="asdasdas" class="col-sm-2 control-label">Rôles</label>
+                        <div class="col-sm-10">
+                            <select class="form-control form-group-margin">
+                                <option>Acteurs</option>
+                                <option>Figuration</option>
+                                <option>Compositeur</option>
+                                <option>Réalisateur</option>
+
+                            </select>
+                        </div>
+                </div>
+                <div class="form-group">
+
+                    <label for="asdasdas" class="col-sm-2 control-label">Filmographie</label>
                     <div class="col-sm-10">
                         <select class="form-control form-group-margin">
-                            <option>Acteurs</option>
-                            <option>Figuration</option>
-                            <option>Compositeur</option>
-                            <option>Réalisateur</option>
+                            <option>...</option>
+
 
                         </select>
                     </div>
                 </div>
+
 
                 <div class="form-group">
                     <label for="asdasdas" class="col-sm-2 control-label" name="recompenses">Récompenses</label>
@@ -165,7 +181,9 @@
                         <textarea class="form-control wyswyg" type="text" name="biography"  id="biography" >{{ Input::old('biography') }}</textarea>@if ($errors->has('biography')) <p class="help-block text-danger">{{ $errors->first('biography') }}</p>@endif
                 </div>
 
-                <button type='submit' class="btn btn-info btn-rounded">Créer un acteur</button>
+                <div class="col-md-10">
+                    <button type='submit' class="btn btn-info btn-rounded">Créer un acteur</button>
+                 </div>
 
             </div>
         </form>
