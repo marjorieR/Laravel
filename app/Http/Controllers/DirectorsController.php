@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\DirectorsRequest;
 use App\Model\Directors;
+use App\Model\Movies;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Facades\DB;
 
 /**
  * Class DirectorsController
@@ -36,7 +37,14 @@ class DirectorsController extends Controller{
      *  page create
      */
     public function create(){
-        return view('Directors/create');
+
+
+        $data =[
+
+            "movies" => Movies::all()
+        ];
+
+        return view('Directors/create',$data);
 
     }
 
@@ -67,6 +75,18 @@ class DirectorsController extends Controller{
 
         $director ->image =  asset("uploads/directors/". $filename);
         $director->save();
+
+
+
+        $tab = [];
+        foreach($request->movies as $movie){
+            $tab[] = array('movies_id'  => $movie, "directors_id" => $director->id);
+        }
+
+        DB::table('directors_movies')-> insert($tab);
+
+
+
 
         Session::flash('success',"le réalisateur {$director->firstname}{$director->lastname} a bien été crée");
 

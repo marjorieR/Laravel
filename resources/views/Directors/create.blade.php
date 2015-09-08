@@ -42,7 +42,7 @@
             @endif
 
 
-            <form enctype="multipart/form-data" novalidate  method="post" action="{{ route('directors.post') }}" class="panel form-horizontal">
+            <form enctype="multipart/form-data" novalidate  method="post" action="{{ route('directors.post') }}" class="panel panel-info form-horizontal">
 
                 {{ csrf_field() }}
 
@@ -115,7 +115,24 @@
                     </div>
 
 
+                    <div class="form-group">
 
+                        <label for="asdasdas" class="col-sm-2 control-label">Film Réalisé</label>
+
+
+                        <div class="col-sm-10">
+
+                            <select multiple name="movies[]" class="form-control form-group-margin">
+
+                                @foreach($movies as $movie)
+                                    <option value="{{ $movie->id }}">{{ $movie->title }}</option>
+                                @endforeach
+
+                            </select>
+
+                        </div>
+
+                     </div>
 
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Biographie</label>

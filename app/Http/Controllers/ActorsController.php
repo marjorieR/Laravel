@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\ActorsRequest;
 use App\Model\Actors;
+use App\Model\Movies;
+use Illuminate\Support\Facades\DB;
+
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -32,7 +35,16 @@ class ActorsController extends Controller{
 
 
     public function create(){
-        return view('Actors/create');
+
+
+        $data =[
+
+            "movies" => Movies::all()
+        ];
+
+
+
+        return view('Actors/create',$data);
 
     }
 
@@ -73,6 +85,21 @@ class ActorsController extends Controller{
 
         $actor ->image =  asset("uploads/actors/". $filename);
         $actor->save();
+        //exit (dump($actor));
+
+
+        //exit(dump($request->movies));
+
+
+        $tab = [];
+        foreach($request->movies as $movie){
+            $tab[] = array('movies_id'  => $movie, "actors_id" => $actor->id);
+        }
+
+        DB::table('actors_movies')-> insert($tab);
+
+
+        //exit(dump($request->movies));
 
         Session::flash('success',"l'acteur {$actor->firstname}{$actor->lastname} a bien été crée");
 

@@ -217,6 +217,8 @@ Route::group(['prefix'=> 'categories'], function() {
 
     Route::get('/create', ['uses' => 'CategoriesController@create', 'as' => 'categories.create']);
 
+    Route::post('/post',['uses' => 'CategoriesControllers@store','as'=> 'categories.post']);
+
     Route::get('/read', ['uses' => 'CategoriesController@create', 'as' => 'categories.read']);
 
     Route::get('/update', ['uses' => 'CategoriesController@update']);

@@ -21,7 +21,7 @@ class ActorsRequest extends FormRequest{
             'lastname' => 'required|min:3',
             'nationality' => 'required',
             'biography' => 'required|min:10|max:5000',
-            'recompensgues' => 'min:5|max:500',
+            'recompenses' => 'min:5|max:500',
             'image' => 'image',
             'dob'=> 'required',
 

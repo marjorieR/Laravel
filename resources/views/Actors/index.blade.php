@@ -27,7 +27,7 @@
 
 @section('content')
 
-    <div class="table-info">
+    <div class="table table-info">
         <div class="table-header">
             <div class="table-caption">
                 Actors
