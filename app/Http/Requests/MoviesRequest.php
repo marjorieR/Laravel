@@ -24,8 +24,13 @@ class MoviesRequest extends FormRequest{
             'title' => 'required|min:3',
             'duree' => 'required|alpha_num',
             'date_release'=> 'required',
+            'annee' => 'required|alpha_num',
+            'bo' =>'required',
+            'visible'=>'required',
+            'cover'=>'required',
+            'budget' => 'required|alpha_num',
             'synopsis' => 'required|min:10|max:5000',
-            'image' => 'image',
+
 
 
 

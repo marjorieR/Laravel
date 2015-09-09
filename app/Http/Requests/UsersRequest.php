@@ -10,7 +10,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 
 
-class CategoriesRequest extends FormRequest{
+class UsersRequest extends FormRequest{
 
     public function authorize(){
 
@@ -21,9 +21,12 @@ class CategoriesRequest extends FormRequest{
     public function rules(){
 
         return [
-            'title' => 'required|min:3',
-            'description' => 'required|min:10|max:5000',
-            'image' => 'image',
+            'username' => 'required|min:3',
+            'avatar' => 'avatar',
+            'email' => 'required|email|unique:user',
+            'password' => 'required',
+            'ville' => 'required',
+            'zipcode' => 'required',
 
 
 

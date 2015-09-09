@@ -28,6 +28,9 @@ $(document).ready( function(){
         );
 
 
+
+        $(".js-example-tags").select2();
+
     });
 
 

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MoviesRequest;
+use App\Model\Actors;
+use App\Model\Categories;
+use App\Model\Directors;
 use App\Model\Movies;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
@@ -75,28 +78,48 @@ class MoviesController extends Controller{
     }
 
 
-    public function create()
-    {
+    public function create(){
+
+        $data =[
+
+            "actors" => Actors::all(),
+            "directors" => Directors::all(),
+            "categories" => Categories::all()
+        ];
+
+
+
+        return view('Movies/create',$data);
+
+
+
+
+
         return view('Movies/create');
 
     }
 
-        public function store(MoviesRequest $request){
+        public function store(MoviesRequest $request)
+        {
 
             // j'enregiste un nouvel acteur des que mon formulaire est valide ( zero erreurs)
 
             $movie = new Movies();
             $movie->title = $request->title;
-            $movie->synopsis= $request->synopsis;
-            $movie->image = $request->image;
             $movie->duree = $request->duree;
-            $movie -> date_release = date_create_from_format("d/m/Y", $request->date_release);
+            $movie->date_release = date_create_from_format("d/m/Y", $request->date_release);
+            $movie->annee = $request->annee;
+            $movie->image = $request->image;
+            $movie->bo=$request->bo;
+            $movie->visible=$request->visible;
+            $movie->cover=$request->cover;
+            $movie->budget = $request->budget;
+            $movie->synopsis = $request->synopsis;
+            $movie->categories_id = $request->categories;
 
 
-
-
-            $filename =""; // define null
-            if($request->file('image')){
+            $filename = ""; // define null
+            if ($request->file('image')) {
 
                 // save the name of file upload
                 $file = $request->file('image');
@@ -104,19 +127,58 @@ class MoviesController extends Controller{
 
                 //move upload
                 $destinationPath = public_path() . '/uploads/movies'; //path vers public/
-                $file->move($destinationPath,$filename); // move the image file into public upload
+                $file->move($destinationPath, $filename); // move the image file into public upload
             }
 
-            $movie ->image =  asset("uploads/movies/". $filename);
+            $movie->image = asset("uploads/movies/" . $filename);
             $movie->save();
 
-            Session::flash('success',"le film { $movie->title}a bien été crée");
+
+            // exit(dump($request->actors));
+
+
+            $tab = [];
+            $tab2 = [];
+
+
+
+            //exit(dump($request->actors));
+
+
+
+
+
+
+
+            if (count($request->actors) > 0) {
+
+                foreach ($request->actors as $actor) {
+                    $tab[] = array('actors_id' => $actor, "movies_id" => $movie->id);
+                }
+
+                DB::table('actors_movies')->insert($tab);
+
+            }
+
+
+            if (count($request->directors) > 0) {
+
+                foreach ($request->directors as $director) {
+                    $tab2[] = array('directors_id' => $director, "movies_id" => $movie->id);
+
+                }
+
+                DB::table('directors_movies')->insert($tab2);
+
+            }
+
+
+            Session::flash('success', "le film {$movie->title} a bien été crée");
 
             return Redirect::route('movies.index');
 
 
         }
-
 
 
     /**

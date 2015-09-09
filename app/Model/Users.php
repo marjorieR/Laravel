@@ -12,4 +12,7 @@ class Users extends Model{
 
 
     protected $table = 'user';
+
+    public $timestamps = false;
+
 }

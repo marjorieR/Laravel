@@ -40,6 +40,29 @@ Route::get('/mention', ['uses' => 'PagesController@mention']);
 Route::get('/faq', ['uses' => 'PagesController@faq']);
 
 
+/**
+ *
+ * Route implicites vers mes controleurs préconcue
+ * car les controleurs uses des traits
+ * avec la fonctionalité authentifications de faites( login, logout,
+ */
+
+
+
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'passwsord'=> 'Auth\PasswordController'
+]);
+
+Route::group(['prefix'=> 'admin',
+    'middleware'=> 'auth'],function(){
+
+        Route::get('/',['as' =>'home','uses' => 'PagesController@index']);
+
+
+
+
+
 /** *****************************************************************************************************************/
 /** ******************************************  pages CRUD ACTORS ***************************************************/
 /** *****************************************************************************************************************/
@@ -178,6 +201,9 @@ Route::group(['prefix'=>'users'], function() {
 
     Route::get('/create', ['uses' => 'UsersController@create', 'as' => 'users.create']);
 
+    Route::post('/post',['uses' => 'UsersController@store','as'=> 'users.post']);
+
+
     Route::get('/read/{id}', ['uses' => 'UsersController@read', 'as' => 'users.read'])
         ->where('id', '[0-9]+');
 
@@ -191,7 +217,7 @@ Route::group(['prefix'=>'users'], function() {
         -> where( 'id','[0-9]+');
 
 
-    Route::get('/user/search/{zipcode?}-{ville?}-{actif?}', ['uses' => 'UserController@search'])
+    Route::get('/user/search/{zipcode?}-{ville?}-{actif?}', ['uses' => 'UsersController@search'])
         ->where('zipcode', '[0-9]{5}')
         ->where('ville', '[a-zA-Z-]+')
         ->where('actif', '0|1');
@@ -217,7 +243,7 @@ Route::group(['prefix'=> 'categories'], function() {
 
     Route::get('/create', ['uses' => 'CategoriesController@create', 'as' => 'categories.create']);
 
-    Route::post('/post',['uses' => 'CategoriesControllers@store','as'=> 'categories.post']);
+    Route::post('/post',['uses' => 'CategoriesController@store','as'=> 'categories.post']);
 
     Route::get('/read', ['uses' => 'CategoriesController@create', 'as' => 'categories.read']);
 
@@ -236,7 +262,7 @@ Route::group(['prefix'=> 'categories'], function() {
 });
 
 
-
+});
 
 Route::get('/search' ,['uses' => 'PagesController@search', 'as' => 'pages.search']);
 

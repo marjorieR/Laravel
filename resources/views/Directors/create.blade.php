@@ -122,7 +122,7 @@
 
                         <div class="col-sm-10">
 
-                            <select multiple name="movies[]" class="form-control form-group-margin">
+                            <select multiple name="movies[]" class="js-example-tags">
 
                                 @foreach($movies as $movie)
                                     <option value="{{ $movie->id }}">{{ $movie->title }}</option>

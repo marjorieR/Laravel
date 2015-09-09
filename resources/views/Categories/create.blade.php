@@ -86,10 +86,11 @@
                         <textarea class="form-control wyswyg" type="text" name="description"  id="description" >{{ Input::old('description') }}</textarea>@if($errors->has('description')) <p class="help-block text-danger">{{ $errors->first('description') }}</p>@endif
                     </div>
 
-                    <div class="col-md-10">
-                        <button type='submit' class="btn btn-info btn-rounded">Créer un Films</button>
-                    </div>
 
+                </div>
+
+                <div class="col-md-12">
+                    <button type='submit' class="btn btn-info  btn-rounded">Créer un Films</button>
                 </div>
 
 

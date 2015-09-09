@@ -161,7 +161,7 @@
 
                     <div class="col-sm-10">
 
-                        <select multiple name="movies[]" class="form-control form-group-margin">
+                        <select multiple name="movies[]" class="js-example-tags">
 
                             @foreach($movies as $movie)
                             <option value="{{ $movie->id }}">{{ $movie->title }}</option>
@@ -191,9 +191,7 @@
                         <textarea class="form-control wyswyg" type="text" name="biography"  id="biography" >{{ Input::old('biography') }}</textarea>@if ($errors->has('biography')) <p class="help-block text-danger">{{ $errors->first('biography') }}</p>@endif
                 </div>
 
-                <div class="col-md-10">
-                    <button type='submit' class="btn btn-info btn-rounded">Créer un acteur</button>
-                 </div>
+
 
             </div>
         </form>

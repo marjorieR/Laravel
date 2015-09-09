@@ -27,10 +27,7 @@
 
     <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-home"></i></i> Home</a>
-        <ul class="dropdown-menu">
 
-
-        </ul>
 
     </li>
     <li class="dropdown">
