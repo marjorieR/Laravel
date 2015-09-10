@@ -162,12 +162,13 @@
 
                     <div class="panel-heading-controls">
 
-                        <select class="form-control input-xs">
+                        <select class="form-control input-xs" id="actionslist">
 
                             <option>Actions</option>
                             <option value="1">Supprimer</option>
                             <option value="2">Activer</option>
                             <option value="3">Desactiver</option>
+
                         </select>
 
                         <button class=" pull-right btn btn-info btn-xs">OK</button>
@@ -182,7 +183,7 @@
 
 
 
-        <table class="table table-bordered">
+        <table id="list" class="table table-bordered">
             <thead>
                 <tr>
                     <th>#</th>
@@ -193,6 +194,7 @@
                     <th>Description</th>
                     <th>Durée</th>
                     <th>Actions</th>
+                    <th>Presse</th>
                 </tr>
             </thead>
             <tbody>
@@ -200,7 +202,7 @@
             @foreach($movies as $movie)
 
                 <tr>
-                    <td class="col-lg-1"><input type="checkbox"> {{ $movie->id }}</td>
+                    <td class="col-lg-1"><input  data-url="{{ route('movies.delete',['id'=>$movie->id]) }}" type="checkbox"></td>
 
                     <td class ="col-lg-1">
 
@@ -256,10 +258,11 @@
 
                     <td>
                         <a href="" class="btn btn-primary btn-sm"><i class="fa fa-eye">  Voir</i></a>
-                        <a href="{{ route('movies.delete',['id'=>$movie->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-trash">  Supprimer</i></a>
-                        <a href="" class="btn btn-xs btn-primary"><i class="fa fa-thumbs-up"></i> Note de presse <small>({{ $movie->note_presse }}/5)</small></a>
-                        <a href="" class="btn btn-xs btn-danger"><i class="fa fa-thumbs-down"></i> Note de presse <small>({{ $movie->note_presse }}/5)</small></a>
-
+                        <a href="{{ route('movies.delete',['id'=>$movie->id]) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash">  Supprimer</i></a>
+                        <td>
+                            <a href="" class="btn btn-xs btn-primary"><i class="fa fa-thumbs-up"></i> Note de presse <small>({{ $movie->note_presse }}/5)</small></a>
+                            <a href="" class="btn btn-xs btn-primary"><i class="fa fa-thumbs-down"></i> Note de presse <small>({{ $movie->note_presse }}/5)</small></a>
+                        </td>
                     </td>
 
                 </tr>

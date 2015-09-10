@@ -45,7 +45,7 @@
                 Directors
             </div>
         </div>
-        <table class="table table-bordered">
+        <table id="list" class="table table-bordered">
             <thead>
 
             <tr>
@@ -85,7 +85,7 @@
 
                     <td>
                         <a href="" class="btn btn-primary btn-sm"><i class="fa fa-eye">  Voir</i></a>
-                        <a href="{{ route('directors.delete',['id'=>$director->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-trash">  Supprimer</i></a>
+                        <a href="{{ route('directors.delete',['id'=>$director->id]) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash">  Supprimer</i></a>
 
                     </td>
 

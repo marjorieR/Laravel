@@ -17,7 +17,8 @@ elixir(function(mix) {
 
 
     mix.scripts([
-        "app.js"
+        "app.js",
+        "ajax.js",
     ]);
 
 

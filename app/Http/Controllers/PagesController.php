@@ -9,13 +9,15 @@ use Illuminate\Http\Request;
  * @package App\Http\Controllers
  */
 
-class PagesController extends Controller{
+class PagesController extends Controller
+{
 
 
     /**
      *  page contact
      */
-    public function contact(){
+    public function contact()
+    {
         return view('Pages/contact');
 
     }
@@ -23,7 +25,8 @@ class PagesController extends Controller{
     /**
      *  page mention
      */
-    public function mention(){
+    public function mention()
+    {
         return view('Pages/mention');
 
     }
@@ -31,19 +34,26 @@ class PagesController extends Controller{
     /**
      *  page faq
      */
-    public function faq(){
+    public function faq()
+    {
         return view('Pages/faq');
 
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
 
-        $title = $request-> input('title');
-       // dump($title);
+        $title = $request->input('title');
+        // dump($title);
         return view('Pages/search');
 
     }
 
+    public function index()
+    {
 
+
+        return view('Pages/index');
+    }
 
 }

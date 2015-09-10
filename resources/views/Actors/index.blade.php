@@ -33,7 +33,7 @@
                 Actors
             </div>
         </div>
-        <table class="table table-bordered">
+        <table id="list" class="table table-bordered">
             <thead>
             <tr>
                 <th>id</th>
@@ -70,7 +70,7 @@
 
                     <td>
                         <a href="" class="btn btn-primary btn-sm"><i class="fa fa-search">  Voir</i></a>
-                        <a href="{{ route('actors.delete',['id'=>$actor->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-trash">  Supprimer</i></a>
+                        <a href="{{ route('actors.delete',['id'=>$actor->id]) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash">  Supprimer</i></a>
 
                     </td>
 

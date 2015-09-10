@@ -16,7 +16,7 @@
  */
 
 Route::get('/', function () {
-    return view('Pages/welcome');
+    return view('Pages/index');
 });
 
 
@@ -51,13 +51,18 @@ Route::get('/faq', ['uses' => 'PagesController@faq']);
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
-    'passwsord'=> 'Auth\PasswordController'
+    'password'=> 'Auth\PasswordController'
 ]);
+
+
+
 
 Route::group(['prefix'=> 'admin',
     'middleware'=> 'auth'],function(){
 
         Route::get('/',['as' =>'home','uses' => 'PagesController@index']);
+
+        Route::get('/account',['as' =>'account','uses' => 'Auth\AuthController@account']);
 
 
 
@@ -263,6 +268,8 @@ Route::group(['prefix'=> 'categories'], function() {
 
 
 });
+
+
 
 Route::get('/search' ,['uses' => 'PagesController@search', 'as' => 'pages.search']);
 

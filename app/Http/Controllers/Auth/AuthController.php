@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use App\Model\Administrators;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -23,6 +24,18 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+
+
+    protected $loginPath = '/auth/login';
+
+
+    protected $redirectPath = '/admin/';
+
+
+    protected $redirectAfterLogout = '/auth/login';
+
+
+
     /**
      * Create a new authentication controller instance.
      *
@@ -30,7 +43,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'getLogout']);
+        $this->middleware('guest', ['except' => ['getLogout','account']]);
     }
 
 
@@ -47,8 +60,15 @@ class AuthController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'firstname' => 'required|max:255',
+            'ville' => 'required|max:50',
+            'images' => 'required|url',
+            'description' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:administrators',
             'password' => 'required|confirmed|min:6',
+
+
+
         ]);
     }
 
@@ -62,6 +82,10 @@ class AuthController extends Controller
     {
         return User::create([
             'name' => $data['name'],
+            'firstname' => $data['firstname'],
+            'ville' => $data['ville'],
+            'images' => $data['images'],
+            'description' => $data['description'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
@@ -70,7 +94,14 @@ class AuthController extends Controller
 
 
     public function getLogin(){
+
         return view('Authentification/login');
+    }
+
+
+    public function account(){
+
+        return view('Authentification/account');
     }
 
 

@@ -31,10 +31,10 @@
 
 <div class="signin-header">
     <a href="index.html" class="logo">
-        <div class="demo-logo bg-primary"><img src="assets/demo/logo-big.png" alt="" style="margin-top: -4px;"></div>&nbsp;
+        <div class="demo-logo bg-primary"><img src="" alt="" style="margin-top: -4px;"></div>&nbsp;
         <strong>Cinema</strong> 3WA
     </a> <!-- / .logo -->
-    <a href="pages-signup-alt.html" class="btn btn-primary">Sign Up</a>
+    <a href="{{ url('auth/register') }}" class="btn btn-primary">Sign Up</a>
 </div> <!-- / .header -->
 
 <h1 class="form-header">Sign in to your Account</h1>
