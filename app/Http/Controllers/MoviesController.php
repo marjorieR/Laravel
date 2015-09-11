@@ -7,8 +7,10 @@ use App\Model\Actors;
 use App\Model\Categories;
 use App\Model\Directors;
 use App\Model\Movies;
+use App\Model\Comments;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
 
@@ -27,6 +29,7 @@ class MoviesController extends Controller{
     public function index($bo="*", $visibilite="*", $distributeur="*"){
 
         $movies = DB::table('movies');
+
         if ($bo != "*") {
             $movies->where('bo', '=', $bo);
         }
@@ -54,7 +57,7 @@ class MoviesController extends Controller{
         //dump( $filmscover = DB::table('movies')->count("cover"1));
 
         //retourne le resultat
-        $movies = $movies->get();
+        $movies = $movies->whereNull('deleted_at')->get();
 
         $data = [
             "movies" => $movies,
@@ -186,12 +189,31 @@ class MoviesController extends Controller{
      */
     public function read($id = null){
 
-        $datas = [
+         $movie = Movies::find($id); //findOrfail()$id
 
-            'movie' => Movies::find($id)];
+            if(!$movie){
 
-        return view('Movies/read',$datas);
+                abort(404);
+            }
 
+        return view('Movies/read',['movie'=> $movie]);
+
+    }
+
+
+    public function comment(\Illuminate\Http\Request $request,$id){
+
+        Comments::create([
+
+            'content'=> $request->input('content'),
+            'movies_id' => $id,
+            'user_id' => 11,
+            'date_created'=> new \DateTime('now')
+        ]);
+
+        Session::flash('success',"votre commentaire a bien été ajouté");
+
+        return Redirect ::route('movies.read',['id'=> $id]);
     }
 
     /**
@@ -209,8 +231,6 @@ class MoviesController extends Controller{
 
         $movie = Movies::find($id);
         $movie->delete();
-
-        Session::flash('success',"le film {$movie->title} a bien été supprimé");
 
         return Redirect::route('movies.index');
 
@@ -261,32 +281,39 @@ class MoviesController extends Controller{
 
 
 
-//    public function actions(){
-//
-//
-//
-//        $movietab =[
-//
-//         if ($actions == "Supprimer") {
-//
-//
-//             foreach ($movies as $movie) {
-//                 $movie = Movies::find();
-//                 $movie->delete();
-//
-//
-//             }
-//
-//         }
-//
-//
-//       ];
-//
+    public function trash(){
+
+       $movies = Movies::onlyTrashed()->get();
+
+        $data=[
+
+            "movies"=> $movies,
+            "bo"=>null,
+            "visibilite"=>null,
+            "distributeur"=>null,
+            "nbfilms" => count($movies),
+            "filmscover"=> 0,
+            "invisible"=> 0,
+            "filmsav"=> 0,
+            "budget"=> 0
+        ];
+        return view('Movies/index', $data);
+    }
+
+
+    public function restore($id){
+
+        $movie = Movies::where('id',$id)->restore();
+        $movie = Movies::find($id);
+
+
+        Session::flash('success', "le film {$movie->titre} a bien été récupéré");
+
+        return Redirect::route('movies.index');
 
 
 
-
-
+    }
 
 
 

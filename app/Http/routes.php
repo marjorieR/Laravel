@@ -161,15 +161,30 @@ Route::group(['prefix'=>'movies'], function(){
 
     Route::get('/create', ['uses' => 'MoviesController@create', 'as' => 'movies.create']);
 
+    Route::get('/trash', ['uses' => 'MoviesController@trash', 'as' => 'movies.trash']);
+
+    Route::get('/restore/{id}', ['uses' => 'MoviesController@restore', 'as' => 'movies.restore'])
+    -> where ('id','[0-9]+');
+
+
+
     Route::post('/post', ['uses' => 'MoviesController@store', 'as' => 'movies.post']);
 
 
     Route::get('/read/{id}', ['uses' => 'MoviesController@read', 'as' => 'movies.read'])
         -> where ('id','[0-9]+');
 
+    Route::post('/comment/{id}', ['uses' => 'MoviesController@comment', 'as' => 'movies.comment'])
+        -> where ('id','[0-9]+');
+
+
+
+
 
     Route::get('/update/{id}', ['uses' => 'MoviesController@update'])
         -> where ('id','[0-9]+');
+
+
 
 
     Route::get('/delete/{id}', ['uses' => 'MoviesController@delete', 'as' => 'movies.delete'])

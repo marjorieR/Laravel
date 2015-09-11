@@ -2,7 +2,7 @@
 
 
 
-@section ('title')  Biography  @endsection
+@section ('title') Biography  @endsection
 
 @section('breadcrumb')
     <li><a href="#"Home></a></li><li>Actors</li><li>biographie</li>

@@ -96,89 +96,102 @@
 
 
 
+    <div class="table-info">
+
+        <div class="table-header">
+
+            <div class="table-caption">
+
+                <div class="btn-group btn-group-sm" role="group" aria-label="...">
+
+                    <a href="{{route('movies.index') }}" class="@if($bo == "*") active @endif btn btn-info btn-sm">
+
+                        <i class="fa fa-language">  Tous</i></a>
+
+                    <a href="{{route('movies.index', ['bo' =>'VO']) }}" class="@if($bo == "VO") active @endif  btn btn-info btn-sm">
+
+                        <i class="fa fa-language">  VO</i></a>
+
+                    <a href="{{route('movies.index',['bo' =>'VOST'])}}" class="@if($bo == "VOST") active @endif btn btn-info btn-sm">
+
+                        <i class="fa fa-language">  VOST</i></a>
+
+                    <a href="{{route('movies.index',['bo' =>'VOSTFR'])}}" class="@if($bo == "VOSTFR") active @endif btn btn-info btn-sm">
+
+                        <i class="fa fa-language">  VOSTFR</i></a>
+
+                </div>
 
 
-            <div class="table-info">
+                <div class="btn-group btn-group-sm" role="group" aria-label="...">
 
-                <div class="table-header">
+                    <a href="{{route('movies.index') }}" class="@if($visibilite  == "*") active @endif btn btn-info btn-sm">
 
+                        <i class="fa fa-eye">  Tous</i></a>
 
+                    <a href="{{route('movies.index', ['visibilite' => 1, "bo" => "*"]) }}" class=" @if ($visibilite == 1) active @endif btn btn-info btn-sm">
 
-                        <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                        <i class="fa fa-eye">  Visble</i></a>
 
-                            <a href="{{route('movies.index') }}" class="@if($bo == "*") active @endif btn btn-info btn-sm">
+                    <a href="{{route('movies.index', ['visibilite' => 0, "bo" => "*"]) }}" class=" @if ($visibilite == 0) active @endif btn btn-info btn-sm">
 
-                                <i class="fa fa-language">  Tous</i></a>
-
-                            <a href="{{route('movies.index', ['bo' =>'VO']) }}" class="@if($bo == "VO") active @endif  btn btn-info btn-sm">
-
-                                <i class="fa fa-language">  VO</i></a>
-
-                            <a href="{{route('movies.index',['bo' =>'VOST'])}}" class="@if($bo == "VOST") active @endif btn btn-info btn-sm">
-
-                                <i class="fa fa-language">  VOST</i></a>
-
-                            <a href="{{route('movies.index',['bo' =>'VOSTFR'])}}" class="@if($bo == "VOSTFR") active @endif btn btn-info btn-sm">
-
-                                <i class="fa fa-language">  VOSTFR</i></a>
-
-                        </div>
-
-                        <div class="btn-group btn-group-sm" role="group" aria-label="...">
-
-                            <a href="{{route('movies.index') }}" class="@if($visibilite  == "*") active @endif btn btn-info btn-sm">
-
-                                <i class="fa fa-eye">  Tous</i></a>
-
-                            <a href="{{route('movies.index', ['visibilite' => 1, "bo" => "*"]) }}" class=" @if ($visibilite == 1) active @endif btn btn-info btn-sm">
-
-                                <i class="fa fa-eye">  Visble</i></a>
-
-                            <a href="{{route('movies.index', ['visibilite' => 0, "bo" => "*"]) }}" class=" @if ($visibilite == 0) active @endif btn btn-info btn-sm">
-
-                                <i class="fa fa-eye-slash">  Invisible</i></a>
-                        </div>
-
-                        <div class="btn-group btn-group-sm" role="group" aria-label="...">
-
-                            <a href="{{ route('movies.index') }}" class=" @if($distributeur == "*") active @endif btn btn-info btn-sm">
-
-                                <i class="fa fa-language">  Tous</i></a>
-
-                            <a href="{{ route('movies.index'), ['distributeur' => 'Warner_Bross', "bo" => "*", 'visibilite' =>"*"]}}" class=" @if($distributeur == "Warner_Bross") active @endif btn btn-info btn-sm">
-                                <i class="fa fa-language">  Warner-Bros</i></a>
-
-                            <a href="{{ route('movies.index'), ['distributeur' => 'HBO', "bo" => "*", 'visibilite' => "*" ] }}" class=" @if($distributeur == "HBO") active @endif btn btn-info btn-sm">
-                                <i class="fa fa-language">  HBO</i></a>
-
-
-
-                        </div>
-
-
-
-
-
-
-                    <div class="panel-heading-controls">
-
-                        <select class="form-control input-xs" id="actionslist">
-
-                            <option>Actions</option>
-                            <option value="1">Supprimer</option>
-                            <option value="2">Activer</option>
-                            <option value="3">Desactiver</option>
-
-                        </select>
-
-                        <button class=" pull-right btn btn-info btn-xs">OK</button>
-
-                    </div>
-
+                        <i class="fa fa-eye-slash">  Invisible</i></a>
 
 
                 </div>
+
+
+                <div class="btn-group btn-group-sm" role="group" aria-label="...">
+
+                    <a href="{{ route('movies.index') }}" class=" @if($distributeur == "*") active @endif btn btn-info btn-sm">
+
+                        <i class="fa fa-language">  Tous</i></a>
+
+                    <a href="{{ route('movies.index'), ['distributeur' => 'Warner_Bross', "bo" => "*", 'visibilite' =>"*"]}}" class=" @if($distributeur == "Warner_Bross") active @endif btn btn-info btn-sm">
+
+                        <i class="fa fa-language">  Warner-Bros</i></a>
+
+                    <a href="{{ route('movies.index'), ['distributeur' => 'HBO', "bo" => "*", 'visibilite' => "*" ] }}" class=" @if($distributeur == "HBO") active @endif btn btn-info btn-sm">
+
+                        <i class="fa fa-language">  HBO</i></a>
+
+                </div>
+
+
+
+                <div class="btn-group btn-group-sm" role="group" aria-label="...">
+
+                    <a href="{{ route('movies.trash')}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"> Poubelle</i></a>
+
+                </div>
+
+
+
+
+                <div class="panel-heading-controls">
+
+                    <select class="form-control input-sm" id="actionslist">
+
+                        <option>Actions</option>
+
+                        <option value="1">Supprimer</option>
+
+                        <option value="2">Activer</option>
+
+                        <option value="3">Desactiver</option>
+
+                    </select>
+
+                             {{--<button class=" pull-right btn btn-info btn-xs">OK</button>--}}
+
+                </div>
+
             </div>
+
+
+        </div>
+
+    </div>
 
 
 
@@ -258,7 +271,12 @@
 
                     <td>
                         <a href="" class="btn btn-primary btn-sm"><i class="fa fa-eye">  Voir</i></a>
-                        <a href="{{ route('movies.delete',['id'=>$movie->id]) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash">  Supprimer</i></a>
+                        @if(Route::current()->getName()== "movies.trash")
+                            <a href="{{ route('movies.restore',['id'=>$movie->id]) }}" class="btn btn-info btn-sm"><i class="fa fa-refresh"> Restaurer</i></a>
+                        @else
+                            <a href="{{ route('movies.delete',['id'=>$movie->id]) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash">  Supprimer</i></a>
+                        @endif
+
                         <td>
                             <a href="" class="btn btn-xs btn-primary"><i class="fa fa-thumbs-up"></i> Note de presse <small>({{ $movie->note_presse }}/5)</small></a>
                             <a href="" class="btn btn-xs btn-primary"><i class="fa fa-thumbs-down"></i> Note de presse <small>({{ $movie->note_presse }}/5)</small></a>

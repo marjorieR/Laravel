@@ -60,5 +60,26 @@ $(document).ready(function(){
 
 
 
+    $('table#list .btn-info').click(function(e){
+
+        e.preventDefault(); //annule l'événement href de mes liens
+
+        console.log('vous avez cliquez dessus');
+
+        var elt = $(this);  // je recupere le liens sur lequel j'ai cliqué
+
+        //model ajax
+        $.ajax({
+
+            url: elt.attr('href') //url de mon du lien sur lequel j'ai cliqué
+
+        }).done(function(){
+
+            elt.parents('tr').fadeOut('slow')
+        })
+
+
+    });
+
 
 });
