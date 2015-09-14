@@ -42,46 +42,58 @@
 
 
     <div class="table-info">
+
         <div class="table-header">
+
             <div class="table-caption">
                 Info Table
             </div>
         </div>
-        <table class="table table-bordered">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Commentaires</th>
 
-            </tr>
+            <table class="table table-bordered">
 
-            </thead>
+                <thead>
 
-            <tbody>
-            @foreach($movie->comments as $comment)
+                    <tr>
+                        <th>#</th>
+                        <th>Commentaires</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+             @foreach($movie->comments as $comment)
+
                 <tr>
 
 
-                <td>{{ $comment->id }}</td>
-                <td>{{ $comment->content }}</td>
+                    <td>{{ $comment->id }}</td>
+                    <td>{{ $comment->content }}</td>
 
-            </tr>
-            @endforeach
+                </tr>
+
+             @endforeach
 
             </tbody>
-        </table>
-        <div class="table-footer">
-            Footer
-        </div>
+
+            </table>
+
+                <div class="table-footer">
+
+                    Footer
+
+                </div>
     </div>
 
-    <form action="{{ route("movies.comment",['id'=> $movie->id]) }}" method="post">
+        <form action="{{ route("movies.comment",['id'=> $movie->id]) }}" method="post">
 
-        {{ csrf_field() }}
+            {{ csrf_field() }}
 
-        <textarea placeholder="Ecrire un commentaire" class="form-control" name="content"></textarea>
-        <button class="btn btn-primary" type="submit"><i class="fafa-pencil"></i> J'écris ce commentaire</button>
+            <textarea placeholder="Ecrire un commentaire" class="form-control" name="content"></textarea>
+            <button class="btn btn-primary" type="submit"><i class="fafa-pencil"></i> J'écris ce commentaire</button>
 
-    </form>
+        </form>
 
 @endsection

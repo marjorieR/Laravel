@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 class CategoriesController extends Controller{
 
 
+    
+
     public function index()
     {
 

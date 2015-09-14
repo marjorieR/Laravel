@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Session;
 class ActorsController extends Controller{
 
 
+
     /**
      *  page create
      */
@@ -48,6 +49,7 @@ class ActorsController extends Controller{
 
     }
 
+
     /**
      * @param ActorsRequest est une classe de validation de formilaire
      * cette classe est liée a la requete, c'est une classe FormRequest
@@ -55,8 +57,6 @@ class ActorsController extends Controller{
      * valide le formulaire et fait une redirection vers create
      * quand mon formulaire contient des erreurs sinon entre dans l'action store
      */
-
-
     public function store(ActorsRequest $request){
 
         // j'enregiste un nouvel acteur des que mon formulaire est valide ( zero erreurs)
