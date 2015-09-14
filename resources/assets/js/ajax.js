@@ -82,4 +82,31 @@ $(document).ready(function(){
     });
 
 
+
+    $('form#addMovie').submit(function(e){
+        e.preventDefault();
+        //console.log('Mon evenement!');
+
+        var elt = $(this);
+
+        //console.log(elt);
+       // console.log(elt.attr('action'));
+       // console.log(elt.serialize());
+
+
+        $.ajax({
+            url: elt.attr('action'),
+            method: "POST", // Methode d'envoi de ma requete
+            data: elt.serialize()
+            // data: envoyer des données
+        }).done(function() {
+            elt.parents('.panel').fadeOut('slow');
+            $.growl.warning({ title: "Bravo!", message: "Film ajouté!", duration: 5000 });
+
+        });
+        //console.log('coucou');
+
+    });
+
+
 });

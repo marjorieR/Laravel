@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
+use App\Model\Comments;
 
 /**
  * Class PagesController
@@ -21,6 +22,7 @@ class PagesController extends Controller
         return view('Pages/contact');
 
     }
+
 
     /**
      *  page mention
@@ -49,11 +51,50 @@ class PagesController extends Controller
 
     }
 
-    public function index()
-    {
+    public function index(){
 
 
-        return view('Pages/index');
+        $ageactor = DB::table('actors')->select(DB::raw('ROUND( AVG((TIMESTAMPDIFF( YEAR, dob,NOW() )))) as moyenne'))
+            ->first();
+        $actorlyon = DB::table('actors')-> where('city','=','Lyon')-> count();
+        $actormars = DB::table('actors')-> where('city','=','Marseille')-> count();
+        $actorparis = DB::table('actors')-> where('city','=','Paris')-> count();
+
+        $nbcom = DB::table('comments')-> count();
+        $comactif = DB::table('comments')-> where('state',2)-> count();
+        $comvalid = DB::table('comments')->where('state',1)->count();
+        $cominactif= DB::table('comments')->where('state',0)->count();
+
+        //exit (dump($nbcom));
+        //exit (dump($ageactor));
+
+        //exit (dump($actorlyon));
+
+
+        $data = [
+
+            "ageactor" => $ageactor,
+            "actorlyon"=> $actorlyon,
+            "actormars"=> $actormars,
+            "actorparis"=> $actorparis,
+            "nbcom" => $nbcom,
+            "comactif" => $comactif,
+            "comvalid" => $comvalid,
+            "cominactif" => $cominactif,
+            "comments" => Comments::all()
+
+        ];
+
+
+        return view('Pages/index',$data);
+
+
+
+
+
+
+
+
     }
 
 }

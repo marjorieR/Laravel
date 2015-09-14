@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests\MoviesRequest;
 use App\Model\Actors;
 use App\Model\Categories;
 use App\Model\Directors;
 use App\Model\Movies;
 use App\Model\Comments;
+use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
 
@@ -214,6 +216,26 @@ class MoviesController extends Controller{
         Session::flash('success',"votre commentaire a bien été ajouté");
 
         return Redirect ::route('movies.read',['id'=> $id]);
+    }
+
+
+
+
+    public function flymovie(Request $request){
+
+
+        $movie = new Movies();
+
+        $movie->title = $request->input('title');
+
+        $movie->synopsis = $request->input('synopsis');
+
+        $movie->categories_id = $request->input('categories_id');
+
+        $movie->save();
+
+       return response()->json(['reponse' => true]);
+
     }
 
     /**

@@ -24,9 +24,13 @@ class Comments extends Model
         return $this->belongsTo('App\Model\Movies');
 
 
-
     }
 
+    public function user(){
+        return $this->belongsTo('App\Model\Users');
+
+
+    }
 
 
 }

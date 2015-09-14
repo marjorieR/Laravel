@@ -16,7 +16,10 @@
  */
 
 Route::get('/', function () {
-    return view('Pages/index');
+
+    Route::get('/index', ['uses' => 'PagesController@index']);
+
+
 });
 
 
@@ -179,6 +182,7 @@ Route::group(['prefix'=>'movies'], function(){
 
 
 
+    Route::post('/flymovie', ['uses' => 'MoviesController@flymovie', 'as' => 'movies.flymovie']);
 
 
     Route::get('/update/{id}', ['uses' => 'MoviesController@update'])
@@ -273,13 +277,22 @@ Route::group(['prefix'=> 'categories'], function() {
 
 
 
-
-
-
-
-
-
 });
+
+
+    Route::group(['prefix' => 'comments'], function () {
+
+        Route::get('/index', ['uses' => 'CommentsController@index', 'as' => 'pages.index']);
+
+
+
+
+    });
+
+
+
+
+
 
 
 });
