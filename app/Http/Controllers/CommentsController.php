@@ -25,6 +25,14 @@ class CommentsController extends Controller{
     }
 
 
+    public function ajaxcomments(){
+        $comments = Comments::orderBy('id', 'desc')->get();
+        return view('Pages/ajaxcomments',
+            ['comments' => $comments]
+        );
+    }
+
+
 
 
 }

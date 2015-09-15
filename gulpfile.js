@@ -19,7 +19,14 @@ elixir(function(mix) {
     mix.scripts([
         "app.js",
         "ajax.js",
+        "realtime.js",
+
     ]);
+
+    mix.scripts([
+        "gmap.js",
+
+    ],'public/js/gmap.js');
 
 
 });

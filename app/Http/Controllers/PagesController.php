@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Model\Comments;
+use App\Model\Sessions;
 
 /**
  * Class PagesController
@@ -65,10 +66,17 @@ class PagesController extends Controller
         $comvalid = DB::table('comments')->where('state',1)->count();
         $cominactif= DB::table('comments')->where('state',0)->count();
 
+        $sessions= Sessions::where('date_session', '>', new \DateTime('now'))->get();
+
+
+
+
         //exit (dump($nbcom));
         //exit (dump($ageactor));
 
         //exit (dump($actorlyon));
+
+        // exit (dump($sessions));
 
 
         $data = [
@@ -81,7 +89,9 @@ class PagesController extends Controller
             "comactif" => $comactif,
             "comvalid" => $comvalid,
             "cominactif" => $cominactif,
-            "comments" => Comments::all()
+            "comments" => Comments::all(),
+            "sessions" => $sessions,
+
 
         ];
 

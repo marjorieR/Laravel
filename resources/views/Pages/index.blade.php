@@ -10,10 +10,20 @@
 
 @section('css')  
 
-
 @parent
 <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
 @endsection
+
+
+
+@section ('js')
+    @parent
+
+    {{--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>--}}
+    {{--<script src="{{ asset('js/gmap.js') }}"></script>--}}
+
+@endsection
+
 
 
 @section('subtitle')
@@ -28,13 +38,25 @@
 
 @section('content')
 
+
+    {{--<div class="row">--}}
+
+        {{--<div id="map" style=" width : 100%; height: 250px;"></div>--}}
+
+    {{--</div>--}}
+
+
+
+    {{--SESSION MOYENNE AGE ACTEURS  +  ACTEURS DE LYON  +  ACTEURS DE PARIS   +  ACTEURS DE MARSEILLE--}}
+
     <div class="row">
+
         <div class="col-md-6">
+
             <div class="stat-panel">
 
                 <a href="" class="stat-cell col-xs-5 bg-info bordered no-border-vr no-border-l no-padding valign-middle text-center text-md">
                     Moyenne d'age des acteurs </br><strong>{{ $ageactor->moyenne }}</strong> Ans</a>
-
 
                 <div class="stat-cell col-xs-7 no-padding valign-middle">
 
@@ -56,10 +78,18 @@
                             <a href="#" class="stat-cell bg-info darker padding-sm valign-middle">{{ $actormars}} à Marseille</a>
 
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
+
+
+        {{--SESSION NOMBRE DE COMMENTAIRES  +  FILMS ACTIFS  +  EN COURS DE VALIDATION  +  fILMS INACTIS--}}
 
         <div class="col-md-6">
 
@@ -82,40 +112,22 @@
                             <a href="#" class="stat-cell bg-success darken padding-sm valign-middle">{{  $comvalid }} En cours de validation</a>
 
                         </div>
+
                         <div class="stat-row">
 
                             <a href="#" class="stat-cell bg-success darker padding-sm valign-middle">{{ $cominactif }} Inactifs</a>
                         </div>
+
                     </div>
+
                 </div>
             </div>
 
         </div>
+
     </div>
 
 
-    <script>
-        init.push(function () {
-            // Easy Pie Charts
-            var easyPieChartDefaults = {
-                animate: 2000,
-                scaleColor: false,
-                lineWidth: 6,
-                lineCap: 'square',
-                size: 90,
-                trackColor: '#e5e5e5'
-            }
-            $('#easy-pie-chart-1').easyPieChart($.extend({}, easyPieChartDefaults, {
-                barColor: PixelAdmin.settings.consts.COLORS[1]
-            }));
-            $('#easy-pie-chart-2').easyPieChart($.extend({}, easyPieChartDefaults, {
-                barColor: PixelAdmin.settings.consts.COLORS[1]
-            }));
-            $('#easy-pie-chart-3').easyPieChart($.extend({}, easyPieChartDefaults, {
-                barColor: PixelAdmin.settings.consts.COLORS[1]
-            }));
-        });
-    </script>
 
 
     <div class="col-md-4">
@@ -177,6 +189,10 @@
 
 
 
+    {{--FORMULAIRE DE CREATION DE FILMS--}}{{--FORMULAIRE DE CREATION DE FILMS--}}{{--FORMULAIRE DE CREATION DE FILMS--}}
+
+
+
     <div class="row">
 
         <div class="col-md-6">
@@ -230,217 +246,146 @@
 
 
 
+        {{--TABLE SEANCES--}}{{--TABLE SEANCES--}}{{--TABLE SEANCES--}}{{--TABLE SEANCES--}}
 
         <div class="col-md-6">
 
-        <div class="panel panel-success widget-support-tickets" id="dashboard-support-tickets">
-
-            <div class="panel-heading">
-
-                <span class="panel-title"><i class="panel-title-icon fa fa-bullhorn"></i>Prochaines séances</span>
-
-                <div class="panel-heading-controls">
-
-                    <div class="panel-heading-text"><a href="#">séance a venir</a></div>
-                </div>
-            </div>
-            <!-- / .panel-heading -->
-            <div class="panel-body tab-content-padding">
-                <!-- Panel padding, without vertical padding -->
-                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 300px;"><div class="panel-padding no-padding-vr" style="overflow: hidden; width: auto; height: 300px;">
-
-                        <div class="ticket">
-
-                            <span class="label label-success ticket-label">sorties</span>
-
-                            <a href="#" title="" class="ticket-title">fims<span>[#201798]</span></a>
-								<span class="ticket-info">
-									diffisé <a href="#" title="">distributeurs</a> today
-								</span>
-                        </div> <!-- / .ticket -->
-
-                        <div class="ticket">
-                            <span class="label label-warning ticket-label">Pending</span>
-                            <a href="#" title="" class="ticket-title">Mobile App Problem<span>[#201797]</span></a>
-								<span class="ticket-info">
-									Opened by <a href="#">Denise Steiner</a> 2 days ago
-								</span>
-                        </div> <!-- / .ticket -->
-
-                        <div class="ticket">
-                            <span class="label label-info ticket-label">In progress</span>
-                            <a href="#" title="" class="ticket-title">
-                                <i class="fa fa-warning text-danger"></i>PayPal issue<span>[#201796]</span>
-                            </a>
-								<span class="ticket-info">
-									Opened by <a href="#">Robert Jang</a> 3 days ago
-								</span>
-                        </div> <!-- / .ticket -->
-
-                        <div class="ticket">
-                            <span class="label label-danger ticket-label">Rejected</span>
-                            <a href="#" title="" class="ticket-title">IE8 problem<span>[#201795]</span></a>
-								<span class="ticket-info">
-									Opened by <a href="#">Robert Jang</a> 4 days ago
-								</span>
-                        </div> <!-- / .ticket -->
-
-                        <div class="ticket">
-                            <span class="label label-success ticket-label">Completed</span>
-                            <a href="#" title="" class="ticket-title">Server unavaible<span>[#201794]</span></a>
-								<span class="ticket-info">
-									Opened by <a href="#">Timothy Owens</a> 5 days ago
-								</span>
-                        </div> <!-- / .ticket -->
-
-                        <div class="ticket">
-                            <span class="label label-success ticket-label">Completed</span>
-                            <a href="#" title="" class="ticket-title">Server unavaible<span>[#201798]</span></a>
-								<span class="ticket-info">
-									Opened by <a href="#" title="">Timothy Owens</a> today
-								</span>
-                        </div> <!-- / .ticket -->
-
-                        <div class="ticket">
-                            <span class="label label-warning ticket-label">Pending</span>
-                            <a href="#" title="" class="ticket-title">Mobile App Problem<span>[#201797]</span></a>
-								<span class="ticket-info">
-									Opened by <a href="#">Denise Steiner</a> 2 days ago
-								</span>
-                        </div> <!-- / .ticket -->
-
-                        <div class="ticket">
-                            <span class="label label-info ticket-label">In progress</span>
-                            <a href="#" title="" class="ticket-title">
-                                <i class="fa fa-warning text-danger"></i>PayPal issue<span>[#201796]</span>
-                            </a>
-								<span class="ticket-info">
-									Opened by <a href="#">Robert Jang</a> 3 days ago
-								</span>
-                        </div> <!-- / .ticket -->
-
-                        <div class="ticket">
-                            <span class="label label-danger ticket-label">Rejected</span>
-                            <a href="#" title="" class="ticket-title">IE8 problem<span>[#201795]</span></a>
-								<span class="ticket-info">
-									Opened by <a href="#">Robert Jang</a> 4 days ago
-								</span>
-                        </div> <!-- / .ticket -->
-
-                        <div class="ticket">
-                            <span class="label label-success ticket-label">Completed</span>
-                            <a href="#" title="" class="ticket-title">Server unavaible<span>[#201794]</span></a>
-								<span class="ticket-info">
-									Opened by <a href="#">Timothy Owens</a> 5 days ago
-								</span>
-                        </div> <!-- / .ticket -->
-
-                        <div class="ticket">
-                            <span class="label label-success ticket-label">Completed</span>
-                            <a href="#" title="" class="ticket-title">Server unavaible<span>[#201798]</span></a>
-								<span class="ticket-info">
-									Opened by <a href="#" title="">Timothy Owens</a> today
-								</span>
-                        </div> <!-- / .ticket -->
-
-                        <div class="ticket">
-                            <span class="label label-warning ticket-label">Pending</span>
-                            <a href="#" title="" class="ticket-title">Mobile App Problem<span>[#201797]</span></a>
-								<span class="ticket-info">
-									Opened by <a href="#">Denise Steiner</a> 2 days ago
-								</span>
-                        </div> <!-- / .ticket -->
-
-                        <div class="ticket">
-                            <span class="label label-info ticket-label">In progress</span>
-                            <a href="#" title="" class="ticket-title">
-                                <i class="fa fa-warning text-danger"></i>PayPal issue<span>[#201796]</span>
-                            </a>
-								<span class="ticket-info">
-									Opened by <a href="#">Robert Jang</a> 3 days ago
-								</span>
-                        </div> <!-- / .ticket -->
-
-                        <div class="ticket">
-                            <span class="label label-danger ticket-label">Rejected</span>
-                            <a href="#" title="" class="ticket-title">IE8 problem<span>[#201795]</span></a>
-								<span class="ticket-info">
-									Opened by <a href="#">Robert Jang</a> 4 days ago
-								</span>
-                        </div> <!-- / .ticket -->
-
-                        <div class="ticket">
-                            <span class="label label-success ticket-label">Completed</span>
-                            <a href="#" title="" class="ticket-title">Server unavaible<span>[#201794]</span></a>
-								<span class="ticket-info">
-									Opened by <a href="#">Timothy Owens</a> 5 days ago
-								</span>
-                        </div> <!-- / .ticket -->
-                    </div><div class="slimScrollBar" style="width: 7px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 7px; z-index: 99; right: 1px; height: 93.5550935550936px; background: rgb(136, 136, 136);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; right: 1px; background: rgb(51, 51, 51);"></div></div>
-            </div> <!-- / .panel-body -->
-        </div> <!-- / .panel -->
-    </div>
-</div>
+            <div id="sessions" class="panel panel-success widget-support-tickets"  data-url="{{ route('sessions.ajaxsessions') }}">
 
 
-    <div class="col-md-12" id="panelajax" data-url="">
+                <div class="panel-heading">
 
+                    <span class="panel-title"><i class="panel-title-icon fa fa-bullhorn"></i>Prochaines séances</span>
 
-        <div class="panel panel-warning" id="dashboard-recent">
+                    <div class="panel-heading-controls">
 
-            <div class="panel-heading">
-
-                <span class="panel-title"><i class="panel-title-icon fa fa-comments text-danger"></i>Commentaires récents</span>
-
-                    <ul class="nav nav-tabs nav-tabs-xs">
-
-                        <li class="active">
-                            <a href="#dashboard-recent-comments" data-toggle="tab">Comments</a>
-                        </li>
-                    </ul>
-
-            </div>
-
-                <div class="tab-content">
-
-
-                    <div class="widget-comments panel-body tab-pane no-padding fade active in" id="dashboard-recent-comments">
-
-                        <div class="panel-padding no-padding-vr" style="overflow: hidden; width: auto; height: 300px;">
-
-                            @foreach($comments as $comment)
-
-                                <div class="comment">
-
-                                    <div class="comment-body">
-
-                                        <div class="comment-by">
-
-                                            <a href="#" title="">{{ $comment->user->username  }}</a>commented on<a href="#" title=""></a>
-
-                                        </div>
-
-                                        <div class="comment-text">{{ $comment->content  }}</div>
-
-                                    </div>
-                                </div>
-
-                            @endforeach
-
-
-
-
-
-                        </div>
-
+                        <div class="panel-heading-text"><a href="#dash">séance a venir</a></div>
 
                     </div>
 
                 </div>
+
+                <div id="dashboardajax" class="panel-body tab-content-padding">
+
+                   <div class="panel-padding no-padding-vr" style="overflow: hidden; width: auto; height: 300px;">
+
+                            @foreach($sessions as $session)
+
+
+                        <div class="ticket" >
+
+                            {{--{{dump($session->date_session)}}--}}
+
+                            <?php $date = new DateTime('+2 day'); ?>
+                            {{--{{ dump($date->format('Y-m-d H:i:s')) }}--}}
+                            <?php $date2 = new DateTime('+6 day'); ?>
+                            <?php $date3 = new DateTime('+15 day'); ?>
+
+
+                                @if($session->date_session < $date->format('Y-m-d H:i:s') )
+                                    <span class="label label-success ticket-label">Moins de deux jours</span>
+
+                                @elseif($session->date_session < $date2->format('Y-m-d H:i:s') )
+
+                                    <span class="label label-info ticket-label">Moins de 6 jours</span>
+
+
+                                @elseif($session->date_session < $date3->format('Y-m-d H:i:s') )
+
+                                    <span class="label label-warning ticket-label">Moins de 15 jours</span>
+
+                                @else
+                                    <span class="label label-danger ticket-label">Plus de 15 jours</span>
+
+                                @endif
+
+                            <a href="#" title="" class="ticket-title">{{ $session->movies->title }}<span># {{ $session->movies->id  }}</span></a>
+
+                                <span class="ticket-info">Cinemas <a href="#" title="">{{ $session->cinema->title }}</a> {{ $session->date_session }}</span>
+
+
+
+                         </div>
+
+                            @endforeach
+
+                </div>
+
             </div>
+
         </div>
 
+    </div>
 
+
+
+
+
+        {{--TABLE COMMENTAIRES--}}{{--TABLE COMMENTAIRES--}}{{--TABLE COMMENTAIRES--}}{{--TABLE COMMENTAIRES--}}
+
+
+ <div class="row">
+
+     <div class="col-md-12">
+
+        <div class="" id="panelajax" data-url="{{ route('comments.ajaxcomments') }}">
+
+
+            <div class="panel panel-warning" id="dashboard">
+
+                <div class="panel-heading">
+
+                    <span class="panel-title"><i class="panel-title-icon fa fa-comments text-danger"></i>Commentaires récents</span>
+
+                        <ul class="nav nav-tabs nav-tabs-xs">
+
+                            <li class="active">
+                                <a href="#dashboard" data-toggle="tab">Comments</a>
+                            </li>
+                        </ul>
+
+                </div>
+
+
+                <div class="tab-content">
+
+
+                        <div class="widget-comments panel-body tab-pane no-padding fade active in" id="dashboard">
+
+                            <div class="panel-padding no-padding-vr" style="overflow: hidden; width: auto; height: 300px;">
+
+                                @foreach($comments as $comment)
+
+                                    <div class="comment">
+
+                                        <div class="comment-body">
+
+                                            <div class="comment-by">
+
+                                                <a href="#" title=""> {{ $comment->user->username  }}</a> commented on <a href="#" title=""></a>
+
+                                            </div>
+
+                                            <div class="comment-text">{{ $comment->content  }}</div>
+
+                                        </div>
+
+                                    </div>
+
+                                @endforeach
+
+                            </div>
+
+                        </div>
+
+                    </div>
+             </div>
+
+        </div>
+
+      </div>
+
+</div>
 
 
 @endsection

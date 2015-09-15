@@ -284,6 +284,16 @@ Route::group(['prefix'=> 'categories'], function() {
 
         Route::get('/index', ['uses' => 'CommentsController@index', 'as' => 'pages.index']);
 
+        Route::get('/ajaxcomments', ['uses' => 'CommentsController@ajaxcomments', 'as' => 'comments.ajaxcomments']);
+
+
+    });
+
+    Route::group(['prefix' => 'sessions'], function () {
+
+        Route::get('/index', ['uses' => 'SessionsController@index', 'as' => 'pages.index']);
+        Route::get('/ajaxsessions', ['uses' => 'SessionsController@ajaxsessions', 'as' => 'sessions.ajaxsessions']);
+
 
 
 

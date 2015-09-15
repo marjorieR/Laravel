@@ -73,7 +73,7 @@ Use search to find needed section.
 <body class="theme-default main-menu-animated">
 
 <script>var init = [];</script>
-<!-- Demo script --> <script src="assets/demo/demo.js"></script> <!-- / Demo script -->
+<!-- Demo script --> <script src="{{ asset('demo/demo.js') }}"></script> <!-- / Demo script -->
 
 <div id="main-wrapper">
     {{--Inclure une sous vue dans une vue --}}
