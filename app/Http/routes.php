@@ -15,9 +15,15 @@
  * pages Welcomme
  */
 
-Route::get('/', function () {
+Route::group(['prefix'=> 'pages'], function() {
 
     Route::get('/index', ['uses' => 'PagesController@index']);
+
+    Route::get('/advenced', ['uses' =>'PagesController@advenced','as'=>'pages.advenced']);
+
+//    Route::get('/advenced',['uses' =>'PagesController@recommandation','as'=>'pages.advenced']);
+
+//    Route::get('/pro', ['uses' =>'PagesController@pro','as'=>'pages.pro']);
 
 
 });
@@ -66,6 +72,13 @@ Route::group(['prefix'=> 'admin',
         Route::get('/',['as' =>'home','uses' => 'PagesController@index']);
 
         Route::get('/account',['as' =>'account','uses' => 'Auth\AuthController@account']);
+
+
+
+
+
+
+
 
 
 

@@ -10,19 +10,21 @@ namespace App\Http\Controllers;
 class CinemasController extends Controller{
 
 
-    public function getIndex(){
+    public function index(){
         return view('Cinemas/index');
     }
 
-    public function getCreate(){
+    public function create(){
         return view('Cinemas/create');
     }
 
-    public function getRead(){
+    public function read(){
         return view('Cinemas/read');
     }
 
-    public function getUpdate(){
+    public function update(){
+
+
         return view('Cinemas/update');
     }
 

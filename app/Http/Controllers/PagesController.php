@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Model\Cinema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Model\Comments;
 use App\Model\Sessions;
+use App\Model\Recommandations;
 
 /**
  * Class PagesController
@@ -99,12 +101,38 @@ class PagesController extends Controller
         return view('Pages/index',$data);
 
 
+    }
 
 
+    public function advenced(){
 
 
+        $datas=[
+
+            'markers' => Cinema::all(),
+
+        ];
+
+        return view('Pages/advenced',$datas);
+    }
 
 
+    public function pro(){
+
+        return view('Pages/pro');
+    }
+
+
+    public function recommandations(){
+
+
+        $data=[
+
+            'recommandations' => Recommandations::all(),
+
+        ];
+
+        return view('Pages/recommandations',$data);
     }
 
 }

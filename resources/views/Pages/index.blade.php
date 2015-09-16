@@ -19,8 +19,7 @@
 @section ('js')
     @parent
 
-    {{--<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>--}}
-    {{--<script src="{{ asset('js/gmap.js') }}"></script>--}}
+
 
 @endsection
 
@@ -39,11 +38,29 @@
 @section('content')
 
 
-    {{--<div class="row">--}}
 
-        {{--<div id="map" style=" width : 100%; height: 250px;"></div>--}}
 
-    {{--</div>--}}
+    <div class="row">
+
+        <div class="pull-right">
+
+            <div class="btn-group btn-group-sm" role="group" aria-label="...">
+
+                <a href="" class=" active btn btn-info btn-sm">Simple</a>
+
+                <a href="{{ route('pages.advenced')}}" class="btn btn-info btn-sm">Avancé</a>
+
+                <a href="" class="btn btn-info btn-sm">professionnel</a>
+
+            </div>
+        </div>
+
+        <hr class="row" />
+
+    </div>
+
+    <br />
+    <br />
 
 
 
