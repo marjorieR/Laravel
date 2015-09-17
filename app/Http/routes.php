@@ -21,7 +21,11 @@ Route::group(['prefix'=> 'pages'], function() {
 
     Route::get('/advenced', ['uses' =>'PagesController@advenced','as'=>'pages.advenced']);
 
-//    Route::get('/advenced',['uses' =>'PagesController@recommandation','as'=>'pages.advenced']);
+    Route::post('/advenced', ['uses' => 'PagesController@tasks', 'as' => 'pages.advenced']);
+
+
+
+
 
 //    Route::get('/pro', ['uses' =>'PagesController@pro','as'=>'pages.pro']);
 

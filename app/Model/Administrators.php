@@ -14,4 +14,14 @@ class Administrators extends Model{
     protected $table = 'administrators';
 
     public $timestamps = false;
+
+
+
+
+    public function tasks(){
+
+        return $this->hasMany('App\Model\tasks');
+
+    }
 }
+

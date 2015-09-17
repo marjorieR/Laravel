@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 use App\Model\Cinema;
+use App\Model\Movies;
+use App\Model\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Model\Comments;
 use App\Model\Sessions;
 use App\Model\Recommandations;
+use App\Model\Tasks;
+use Illuminate\Support\Facades\Redirect;
 
 /**
  * Class PagesController
@@ -54,23 +58,22 @@ class PagesController extends Controller
 
     }
 
-    public function index(){
+    public function index()
+    {
 
 
         $ageactor = DB::table('actors')->select(DB::raw('ROUND( AVG((TIMESTAMPDIFF( YEAR, dob,NOW() )))) as moyenne'))
             ->first();
-        $actorlyon = DB::table('actors')-> where('city','=','Lyon')-> count();
-        $actormars = DB::table('actors')-> where('city','=','Marseille')-> count();
-        $actorparis = DB::table('actors')-> where('city','=','Paris')-> count();
+        $actorlyon = DB::table('actors')->where('city', '=', 'Lyon')->count();
+        $actormars = DB::table('actors')->where('city', '=', 'Marseille')->count();
+        $actorparis = DB::table('actors')->where('city', '=', 'Paris')->count();
 
-        $nbcom = DB::table('comments')-> count();
-        $comactif = DB::table('comments')-> where('state',2)-> count();
-        $comvalid = DB::table('comments')->where('state',1)->count();
-        $cominactif= DB::table('comments')->where('state',0)->count();
+        $nbcom = DB::table('comments')->count();
+        $comactif = DB::table('comments')->where('state', 2)->count();
+        $comvalid = DB::table('comments')->where('state', 1)->count();
+        $cominactif = DB::table('comments')->where('state', 0)->count();
 
-        $sessions= Sessions::where('date_session', '>', new \DateTime('now'))->get();
-
-
+        $sessions = Sessions::where('date_session', '>', new \DateTime('now'))->get();
 
 
         //exit (dump($nbcom));
@@ -84,9 +87,9 @@ class PagesController extends Controller
         $data = [
 
             "ageactor" => $ageactor,
-            "actorlyon"=> $actorlyon,
-            "actormars"=> $actormars,
-            "actorparis"=> $actorparis,
+            "actorlyon" => $actorlyon,
+            "actormars" => $actormars,
+            "actorparis" => $actorparis,
             "nbcom" => $nbcom,
             "comactif" => $comactif,
             "comvalid" => $comvalid,
@@ -98,7 +101,7 @@ class PagesController extends Controller
         ];
 
 
-        return view('Pages/index',$data);
+        return view('Pages/index', $data);
 
 
     }
@@ -107,32 +110,67 @@ class PagesController extends Controller
     public function advenced(){
 
 
-        $datas=[
+        $datas = [
 
             'markers' => Cinema::all(),
-
-        ];
-
-        return view('Pages/advenced',$datas);
-    }
-
-
-    public function pro(){
-
-        return view('Pages/pro');
-    }
-
-
-    public function recommandations(){
-
-
-        $data=[
-
             'recommandations' => Recommandations::all(),
+            'users' => Users::where('created_at','>', new \DateTime('-15 days'))->orderBy('created_at', 'desc',5)->get(),
+            'movies' => Movies::all(),
+            'tasks' => Tasks::all(),
 
         ];
 
-        return view('Pages/recommandations',$data);
+
+        return view('Pages/advenced', $datas);
     }
+
+
+
+
+
+    public function tasks(Request $request){
+
+
+        $task = new Tasks();
+
+        $task->content = $request->input('content');
+
+        $task->date_tasks = $request->input('date_tasks');
+
+        $task->movies_id = $request->input('movie');
+
+        $task->ad_id = $request->input('movie');
+
+        $task->save();
+
+
+
+
+
+//        Tasks::create([
+//
+//            'content'=> $request->input('content'),
+//            'movies_id' => $id,
+//            'user_id' => 11,
+//            'date_created'=> new \DateTime('now')
+//        ]);
+
+
+
+
+
+
+
+
+
+        return Redirect::route('pages.advenced');
+
+    }
+
+//    public function pro(){
+//
+//        return view('Pages/pro');
+//    }
+
 
 }

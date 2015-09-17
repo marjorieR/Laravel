@@ -35,4 +35,18 @@ class Movies extends Model{
     }
 
 
+    public function recommandations(){
+
+        return $this->hasMany('App\Model\Recommandations');
+
+    }
+
+
+    public function tasks(){
+
+        return $this->hasMany('App\Model\tasks');
+
+    }
+
+
 }

@@ -51,6 +51,8 @@
                 <th>id</th>
                 <th>Avatar</th>
                 <th>Username</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
                 <th>Email</th>
                 <th>Ville</th>
                 <th>Zipcode</th>
@@ -77,6 +79,10 @@
                     </td>
 
                     <td>{{ $user->username }}</td>
+
+                    <td>{{ $user->firstname }}</td>
+
+                    <td>{{ $user->lastname }}</td>
 
                     <td>{{ $user->email }}</td>
 

@@ -21,6 +21,23 @@ class Recommandations extends Model{
 
 
 
+    public function cinema(){
+
+        return $this->belongsTo('App\Model\Cinema');
+    }
+
+
+    public function movies(){
+
+
+        return $this->belongsTo('App\Model\Movies');
+    }
+
+
+
+
+
+
 
 
 

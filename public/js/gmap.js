@@ -42,7 +42,9 @@ $(document).ready(function() {
 
                 var infowindow = new google.maps.InfoWindow({
 
-                    content: "<div class='alert alert-info'><h2>"+title+"</h2><img src='"+images+"' alt='' class='img-rounded'></br>"+"<h3>"+address+"</h3></br>"+"<p>Seances à venir: "+sessions+"</p></div>"
+                    content: "<div class='alert alert-info'><h2>"+title+"</h2><img src='"+images+"' alt='' style='width:50px;height:50px;' class='rounded'></br>"+"<h3>"+address+"</h3></br>"+"<p>Seances à venir: "+sessions+"</p></div>"
+
+
 
                 });
 

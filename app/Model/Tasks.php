@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Class Actors represente la table actors
  * @package App\Model
  */
-class Cinema extends Model{
+class Tasks extends Model{
 
 
 
-    protected $table = 'cinema';
+    protected $table = 'tasks';
 
     public $timestamps = false;
 
@@ -21,18 +21,24 @@ class Cinema extends Model{
 
 
 
-    public function sessions(){
+    public function administrators(){
 
-        return $this->hasMany('App\Model\Sessions');
-
+        return $this->belongsTo('App\Model\administrators');
     }
 
 
-    public function recommandations(){
+    public function movies(){
 
-        return $this->hasMany('App\Model\Recommandations');
 
+        return $this->belongsTo('App\Model\Movies');
     }
+
+
+
+
+
+
+
 
 
 
