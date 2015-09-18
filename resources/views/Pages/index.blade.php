@@ -276,7 +276,7 @@
 
                     <div class="panel-heading-controls">
 
-                        <div class="panel-heading-text"><a href="#dash">séance a venir</a></div>
+                        <div class="panel-heading-text"><a href="">séance a venir</a></div>
 
                     </div>
 

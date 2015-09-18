@@ -21,7 +21,11 @@ Route::group(['prefix'=> 'pages'], function() {
 
     Route::get('/advenced', ['uses' =>'PagesController@advenced','as'=>'pages.advenced']);
 
-    Route::post('/advenced', ['uses' => 'PagesController@tasks', 'as' => 'pages.advenced']);
+    Route::post('/create-task', ['uses' => 'PagesController@tasks', 'as' => 'pages.createtask']);
+
+    Route::get('/deletetasks/{id}', ['uses' => 'PagesController@deletetasks', 'as' => 'pages.deletetasks']);
+
+
 
 
 
@@ -316,8 +320,12 @@ Route::group(['prefix'=> 'categories'], function() {
 
     });
 
+    Route::group(['prefix' => 'tasks'], function () {
+
+    Route::get('/ajaxtasks', ['uses' => 'TasksController@ajaxtasks', 'as' => 'tasks.ajaxtasks']);
 
 
+    });
 
 
 

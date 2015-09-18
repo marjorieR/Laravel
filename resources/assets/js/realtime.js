@@ -19,6 +19,13 @@ $(document).ready(function(){
             $('#dashboardajax').html(data);
         });
 
+        $.ajax({
+            url: $('#tasks').attr('data-url')
+
+        }).done(function(data){
+            $('#dashajax').html(data);
+        });
+
 
 
 

@@ -51,25 +51,24 @@ $(document).ready( function(){
         }));
 
 
-    //
-    //
-    //$('#dashboard .panel-body > div').slimScroll({ height: 300, alwaysVisible: true, color: '#888',allowPageScroll: true });
-    //
-    //
-    //init.push(function () {
-    //    $('.widget-tasks .panel-body').pixelTasks().sortable({
-    //        axis: "y",
-    //        handle: ".task-sort-icon",
-    //        stop: function( event, ui ) {
-    //            // IE doesn't register the blur when sorting
-    //            // so trigger focusout handlers to remove .ui-state-focus
-    //            ui.item.children( ".task-sort-icon" ).triggerHandler( "focusout" );
-    //        }
-    //    });
-    //    $('#clear-completed-tasks').click(function () {
-    //        $('.widget-tasks .panel-body').pixelTasks('clearCompletedTasks');
-    //    });
-    //});
+
+
+    $('#dashboard .panel-body > div').slimScroll({ height: 300, alwaysVisible: true, color: '#888',allowPageScroll: true });
+
+
+    init.push(function () {
+        $('.widget-tasks .panel-body').pixelTasks().sortable({
+            axis: "y",
+            handle: ".task-sort-icon",
+            stop: function( event, ui ) {
+
+                ui.item.children( ".task-sort-icon" ).triggerHandler( "focusout" );
+            }
+        });
+        $('#clear-completed-tasks').click(function () {
+            $('.widget-tasks .panel-body').pixelTasks('clearCompletedTasks');
+        });
+    });
 
 });
 $(document).ready(function(){
@@ -183,6 +182,59 @@ $(document).ready(function(){
     });
 
 
+    $('form#addTasks').submit(function(e){
+        e.preventDefault();
+
+        console.log('coucou');
+
+        var elt = $(this);
+        console.log(elt);
+
+        $.ajax({
+            url: elt.attr('action'),
+            method: "POST",
+            data: elt.serialize()
+
+        }).done(function() {
+            elt.parents('.task').fadeIn('slow');
+
+            $.growl.warning({ title: "Bravo!", message: "Task ajouté!", duration: 5000 });
+
+            document.getElementById("addTasks").reset();
+
+
+
+
+
+        });
+
+
+
+    });
+
+    $('#dashajax').on("click",".checkbox", function(e){
+
+        e.preventDefault(); //annule l'événement href de mes liens
+
+        console.log('vous avez cliquez dessus');
+
+        var elt = $(this);  // je recupere le liens sur lequel j'ai cliqué
+
+        //model ajax
+        $.ajax({
+
+            url: elt.attr('href') //url de mon du lien sur lequel j'ai cliqué
+
+        }).done(function(){
+
+            //elt.parents('div').fadeOut('slow')
+        })
+
+
+    });
+
+
+
 
 
 
@@ -206,6 +258,13 @@ $(document).ready(function(){
 
         }).done(function(data){
             $('#dashboardajax').html(data);
+        });
+
+        $.ajax({
+            url: $('#tasks').attr('data-url')
+
+        }).done(function(data){
+            $('#dashajax').html(data);
         });
 
 

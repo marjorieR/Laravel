@@ -180,10 +180,14 @@
 
     </div>
 
+
+
+    {{--TABLE TASK--}} {{--TABLE TASK--}} {{--TABLE TASK--}} {{--TABLE TASK--}} {{--TABLE TASK--}} {{--TABLE TASK--}}
+
     <div class="col-md-6">
 
 
-        <div class="panel widget-tasks panel-dark-gray">
+        <div id="tasks" class="panel widget-tasks panel-dark-gray" data-url="{{ route('tasks.ajaxtasks') }}">
 
             <div class="panel-heading">
 
@@ -197,97 +201,94 @@
 
             </div>
 
+            <div  class="panel-body no-padding-vr ui-sortable">
+
+                <div id="dashajax" class="panel-body no-padding-vr ui-sortable">
+
+                    @foreach($tasks as $task)
+
+                    <div class="task  @if($task->enabled == 1) completed @endif">
+
+                        <?php $date = new DateTime('-2 day'); ?>
+                        <?php $date2 = new DateTime('-7 day'); ?>
+                        <?php $date3 = new DateTime('+7 day'); ?>
 
 
-            <div class="panel-body no-padding-vr ui-sortable">
+                            @if($task->date_tasks > $date->format('Y-m-d H:i:s') )
 
-                @foreach($tasks as $task)
+                                <span class="label label-success ticket-label">Hight</span>
 
-                <div class="task">
+                            @elseif($task->date_tasks > $date2->format('Y-m-d H:i:s') )
 
-                    <?php $date = new DateTime('-2 day'); ?>
-                    <?php $date2 = new DateTime('-7 day'); ?>
-                    <?php $date3 = new DateTime('+7 day'); ?>
+                                <span class="label label-info ticket-label">Medium</span>
 
-
-                        @if($task->date_tasks > $date->format('Y-m-d H:i:s') )
-
-                            <span class="label label-success ticket-label">Hight</span>
-
-                        @elseif($task->date_tasks > $date2->format('Y-m-d H:i:s') )
-
-                            <span class="label label-info ticket-label">Medium</span>
-
-                        @else
-                            <span class="label label-danger ticket-label">Low</span>
+                            @else
+                                <span class="label label-danger ticket-label">Low</span>
 
 
-                        @endif
+                            @endif
 
-                    <div class="fa fa-arrows-v task-sort-icon"></div>
+                        <div class="fa fa-arrows-v task-sort-icon"></div>
 
 
-                    <div class="action-checkbox">
+                        <div class="action-checkbox" id="actionbox">
 
-                        <label class="px-single"><input type="checkbox" name="" value="" class="px"><span class="lbl"></span></label>
+                            <label class="px-single"><input data url="{{ route('pages.deletetasks',['id'=>$task->id]) }}" type="checkbox" name="" value="" class="px"><span class="lbl"></span></label>
+
+                        </div>
+
+                        <a href="#" class="task-title"> {{ $task->content }} {{ $task->movies->title }}<span>{{ date(' d / m / Y', strtotime($task->date_tasks)) }}</span></a>
+
+
 
                     </div>
 
-                    <a href="#" class="task-title"> {{ $task->content }} {{ $task->movies->title }}<span>{{ date(' d / m / Y', strtotime($task->date_tasks)) }}</span></a>
 
-                        <p></p>
 
+                @endforeach
 
                 </div>
 
-            @endforeach
+                    <hr/>
 
 
 
-                         <hr/>
+                        <form id="addTasks" method="post"  action="{{ route('pages.createtask') }}" class="row">
 
-                    <form method="post" action="{{ route('pages.advenced') }}" class="row">
+                        {{ csrf_field() }}
 
-                    {{csrf_field()}}
-
-                    <div class="col-md-6">
-                        <input name='content' id="content" type="text" placeholder="New task" class="form-control input-md widget-profile-input">
-                    </div>
+                        <div class="col-md-6">
+                            <input name='content' id="content" type="text" placeholder="New task" class="form-control input-md widget-profile-input">
+                        </div>
 
 
+                        <div class="col-md-6">
+                            <input type="text" class="form-control date input-md widget-profile-input" name="date" id="date_tasks" placeholder="date">
+                        </div>
 
-                    <div class="col-md-6">
-                        <input type="text" class="form-control date input-md widget-profile-input" name="date" id="date_tasks" placeholder="date">
-                    </div>
+                        <div class="col-md-6"><br></div>
 
-                    <div class="col-md-6"><br></div>
+                        <div class="col-md-12">
+                            <select class="form-control input-md widget-profile-input " name="movie">
 
-                    <div class="col-md-12">
-                        <select class="form-control input-md widget-profile-input " name="movie">
+                                @foreach($movies as $movie)
+                                    <option id="{{$movie->id}}" value="{{$movie->id}}">{{$movie->title}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-12"> <br></div>
+                        <button type="submit" class="btn btn-dark-gray btn-xs col-md-offset-1 col-md-10">Créer</button>
 
-                            @foreach($movies as $movie)
-                                <option id="{{$movie->id}}" value="{{$movie->id}}">{{$movie->title}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-12"> <br></div>
-                    <button type="submit" class="btn btn-dark-gray btn-xs col-md-offset-1 col-md-10">Créer</button>
-
-                </form>
-
-
+                    </form>
 
             </div>
+
         </div>
+
     </div>
 
 
 </div>
-
-
-
-
-
 
 
 </div>

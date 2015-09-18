@@ -4,7 +4,7 @@
                     @foreach($sessions as $session)
 
 
-                        <div class="ticket">
+                        <div class="ticket @if($task->enabled == 1) completed @endif ">
 
                             {{--{{dump($session->date_session)}}--}}
 

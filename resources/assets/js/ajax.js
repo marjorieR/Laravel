@@ -109,6 +109,59 @@ $(document).ready(function(){
     });
 
 
+    $('form#addTasks').submit(function(e){
+        e.preventDefault();
+
+        console.log('coucou');
+
+        var elt = $(this);
+        console.log(elt);
+
+        $.ajax({
+            url: elt.attr('action'),
+            method: "POST",
+            data: elt.serialize()
+
+        }).done(function() {
+            elt.parents('.task').fadeIn('slow');
+
+            $.growl.warning({ title: "Bravo!", message: "Task ajouté!", duration: 5000 });
+
+            document.getElementById("addTasks").reset();
+
+
+
+
+
+        });
+
+
+
+    });
+
+    $('#dashajax').on("click",".checkbox", function(e){
+
+        e.preventDefault(); //annule l'événement href de mes liens
+
+        console.log('vous avez cliquez dessus');
+
+        var elt = $(this);  // je recupere le liens sur lequel j'ai cliqué
+
+        //model ajax
+        $.ajax({
+
+            url: elt.attr('href') //url de mon du lien sur lequel j'ai cliqué
+
+        }).done(function(){
+
+            //elt.parents('div').fadeOut('slow')
+        })
+
+
+    });
+
+
+
 
 
 

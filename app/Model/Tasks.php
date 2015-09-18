@@ -17,6 +17,7 @@ class Tasks extends Model{
 
     public $timestamps = false;
 
+    protected $fillable = ['content', 'movies_id','administrators_id','date_tasks'];
 
 
 
