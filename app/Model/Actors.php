@@ -14,4 +14,6 @@ class Actors extends Model{
     protected $table = 'actors';
 
     public $timestamps = false;
+
+    protected $fillable = ['firstname'];
 }

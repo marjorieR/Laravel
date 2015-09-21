@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Model\Actors;
 use App\Model\Cinema;
 use App\Model\Movies;
 use App\Model\Users;
@@ -11,6 +12,7 @@ use App\Model\Comments;
 use App\Model\Sessions;
 use App\Model\Recommandations;
 use App\Model\Tasks;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Redirect;
 
 /**
@@ -77,6 +79,11 @@ class PagesController extends Controller
 //        exit();
 
 
+        if(Gate::denies('date_expire')){
+            abort(403);
+        }
+
+
         $ageactor = DB::table('actors')->select(DB::raw('ROUND( AVG((TIMESTAMPDIFF( YEAR, dob,NOW() )))) as moyenne'))
             ->first();
         $actorlyon = DB::table('actors')->where('city', '=', 'Lyon')->count();
@@ -128,6 +135,9 @@ class PagesController extends Controller
     public function advenced(){
 
 
+
+
+
         $datas = [
 
             'markers' => Cinema::all(),
@@ -136,10 +146,13 @@ class PagesController extends Controller
             'movies' => Movies::all(),
             'tasks' => Tasks::all(),
 
+
         ];
 
 
         return view('Pages/advenced', $datas);
+
+
     }
 
 

@@ -294,8 +294,103 @@
 </div>
 
 
+{{--Répartition des acteurs par ville--}} {{--Répartition des acteurs par ville--}} {{--Répartition des acteurs par ville--}}
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <div class="panel">
+
+            <div class="panel-heading">
+
+                <span class="panel-title">Répartition des acteurs par ville</span>
+
+            </div>
+
+            <div class="panel-body">
+
+                <div class="graph-container">
+
+                    <div id="hero-bar" class="graph" style="position: relative;"></div>
+
+                </div>
+
+                    <div style="display:none">
+
+                        <ville data-name="" data-nb=""></ville>
 
 
+                    </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="panel">
+
+            <div class="panel-heading">
+
+                <span class="panel-title">Répartition des acteurs par âge</span>
+
+            </div>
+
+            <div class="panel-body">
+
+                <div class="graph-container">
+
+                    <div id="jq-flot-pie"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div class="panel">
+
+            <div class="panel-heading">
+
+                <span class="panel-title">Répartition des Films par les 4 meilleurs réalisateurs</span>
+
+
+            </div>
+
+            <div class="panel-body">
+
+                <div class="graph-container">
+
+                    <div data-url="{{ url('admin/api/best-directors') }}" id="hero-area" class="graph" style="position: relative;"></div>
+
+                </div>
+
+                <div style="display:none">
+
+
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
 
 
 

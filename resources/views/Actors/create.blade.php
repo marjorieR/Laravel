@@ -192,9 +192,14 @@
                 </div>
 
 
+        </form>
+
+            <div class="col-md-12">
+
+                <button type='submit' class="btn btn-info center-block btn-rounded">Créer un Films</button>
 
             </div>
-        </form>
+
 </div>
 
 @endsection

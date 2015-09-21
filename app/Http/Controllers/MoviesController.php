@@ -11,7 +11,9 @@ use App\Model\Movies;
 use App\Model\Comments;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -29,6 +31,13 @@ class MoviesController extends Controller{
 
 
     public function index($bo="*", $visibilite="*", $distributeur="*"){
+
+        if (Gate::denies('superadmin')) {
+
+            abort(403);
+        }
+
+
 
         $movies = DB::table('movies');
 
@@ -121,6 +130,8 @@ class MoviesController extends Controller{
             $movie->budget = $request->budget;
             $movie->synopsis = $request->synopsis;
             $movie->categories_id = $request->categories;
+            $movie->administrators_id = Auth::user()->id;
+
 
 
             $filename = ""; // define null
@@ -252,6 +263,12 @@ class MoviesController extends Controller{
     public function delete($id){
 
         $movie = Movies::find($id);
+
+
+        if (Gate::denies('hasmovie',$movie)){
+            abort(403);
+        }
+
         $movie->delete();
 
         return Redirect::route('movies.index');

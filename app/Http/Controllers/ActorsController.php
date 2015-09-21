@@ -6,6 +6,8 @@ use App\Model\Actors;
 use App\Model\Movies;
 use Illuminate\Support\Facades\DB;
 
+
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -134,6 +136,10 @@ class ActorsController extends Controller{
     public function delete($id){
         // supprimer acteur
         $actor = Actors::find($id);
+
+        if (Gate::denies('hasactor',$actor)){
+            abort(403);
+        }
         $actor->delete();
 
         // j'écris un session un message flash

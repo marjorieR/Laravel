@@ -77,9 +77,24 @@ Route::controllers([
 Route::group(['prefix'=> 'admin',
     'middleware'=> 'auth'],function(){
 
+
+
+
+
+    Route::controller('api','ApiController');
+
+
+
+
+
         Route::get('/',['as' =>'home','uses' => 'PagesController@index']);
 
         Route::get('/account',['as' =>'account','uses' => 'Auth\AuthController@account']);
+
+
+
+
+
 
 
 
