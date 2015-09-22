@@ -397,6 +397,76 @@
 
 
 
+{{--TABLE COMMENTAIRES--}}{{--TABLE COMMENTAIRES--}}{{--TABLE COMMENTAIRES--}}{{--TABLE COMMENTAIRES--}}
+
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div class="" id="panelajax" data-url="{{ route('comments.ajaxcomments') }}">
+
+
+            <div class="panel panel-warning" id="dashboard">
+
+                <div class="panel-heading">
+
+                    <span class="panel-title"><i class="panel-title-icon fa fa-comments text-danger"></i>Commentaires récents</span>
+
+                    <ul class="nav nav-tabs nav-tabs-xs">
+
+                        <li class="active">
+                            <a href="#dashboard" data-toggle="tab">Comments</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+
+                <div class="tab-content">
+
+
+                    <div class="widget-comments panel-body tab-pane no-padding fade active in" id="dashboard">
+
+                        <div class="panel-padding no-padding-vr" style="overflow: hidden; width: auto; height: 300px;">
+
+                            @foreach($comments as $comment)
+
+                                <div class="comment">
+
+                                    <div class="comment-body">
+
+                                        <div class="comment-by">
+
+                                            <a href="#" title=""> {{ $comment->user->username  }}</a> commented on <a href="#" title=""></a>
+
+                                        </div>
+
+                                        <div class="comment-text">{{ $comment->content  }}</div>
+
+                                    </div>
+
+                                </div>
+
+                            @endforeach
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
 
 
 

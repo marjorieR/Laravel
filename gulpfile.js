@@ -20,6 +20,7 @@ elixir(function(mix) {
         "app.js",
         "ajax.js",
         "realtime.js",
+        "graph.js",
 
     ]);
 
@@ -27,6 +28,14 @@ elixir(function(mix) {
         "gmap.js",
 
     ],'public/js/gmap.js');
+
+
+
+    mix.scripts([
+
+
+
+    ]);
 
 
 });

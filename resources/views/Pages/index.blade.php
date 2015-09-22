@@ -18,7 +18,13 @@
 
 @section ('js')
     @parent
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/highcharts-3d.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
 
 @endsection
@@ -50,7 +56,7 @@
 
                 <a href="{{ route('pages.advenced')}}" class="btn btn-info btn-sm">Avancé</a>
 
-                <a href="" class="btn btn-info btn-sm">professionnel</a>
+                <a href="{{ route('pages.pro')}}" class="btn btn-info btn-sm">professionnel</a>
 
             </div>
         </div>
@@ -334,75 +340,37 @@
 
     </div>
 
+      {{-- GRAPH RÉPARTITION DES FILMS PAR CATEGORIES --}}      {{-- GRAPH RÉPARTITION DES FILMS PAR CATEGORIES --}}
+
+<div class="row">
+
+   <div class="col-md-6">
+
+       <div id="container" data-tabe="{{ url('admin/api/allcat-movies') }}" style="height: 400px"></div>
+
+   </div>
 
 
+    {{--  --}}      {{--  --}}
 
+    <div class="col-md-6">
 
-        {{--TABLE COMMENTAIRES--}}{{--TABLE COMMENTAIRES--}}{{--TABLE COMMENTAIRES--}}{{--TABLE COMMENTAIRES--}}
-
-
- <div class="row">
-
-     <div class="col-md-12">
-
-        <div class="" id="panelajax" data-url="{{ route('comments.ajaxcomments') }}">
-
-
-            <div class="panel panel-warning" id="dashboard">
-
-                <div class="panel-heading">
-
-                    <span class="panel-title"><i class="panel-title-icon fa fa-comments text-danger"></i>Commentaires récents</span>
-
-                        <ul class="nav nav-tabs nav-tabs-xs">
-
-                            <li class="active">
-                                <a href="#dashboard" data-toggle="tab">Comments</a>
-                            </li>
-                        </ul>
-
-                </div>
-
-
-                <div class="tab-content">
-
-
-                        <div class="widget-comments panel-body tab-pane no-padding fade active in" id="dashboard">
-
-                            <div class="panel-padding no-padding-vr" style="overflow: hidden; width: auto; height: 300px;">
-
-                                @foreach($comments as $comment)
-
-                                    <div class="comment">
-
-                                        <div class="comment-body">
-
-                                            <div class="comment-by">
-
-                                                <a href="#" title=""> {{ $comment->user->username  }}</a> commented on <a href="#" title=""></a>
-
-                                            </div>
-
-                                            <div class="comment-text">{{ $comment->content  }}</div>
-
-                                        </div>
-
-                                    </div>
-
-                                @endforeach
-
-                            </div>
-
-                        </div>
-
-                    </div>
-             </div>
-
-        </div>
-
-      </div>
+    </div>
 
 </div>
+
+{{-- GRAPH RÉPARTITION NB SEANCES/MOIS --}}{{-- GRAPH RÉPARTITION NB SEANCES/MOIS --}}{{-- GRAPH RÉPARTITION NB SEANCES/MOIS --}}
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div id="containe" style="height: 400px; "></div>
+
+    </div>
+
+</div>
+
 
 
 @endsection

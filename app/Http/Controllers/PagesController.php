@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Model\Actors;
+use App\Model\Categories;
 use App\Model\Cinema;
 use App\Model\Movies;
 use App\Model\Users;
@@ -64,6 +65,9 @@ class PagesController extends Controller
     public function index()
     {
 //
+
+
+
 ////        $m = new \MongoClient();
 ////        $db=$m->selectDB('laravel');
 ////        $collection = new \MongoCollection($db,'unicorns');
@@ -89,16 +93,18 @@ class PagesController extends Controller
         $actorlyon = DB::table('actors')->where('city', '=', 'Lyon')->count();
         $actormars = DB::table('actors')->where('city', '=', 'Marseille')->count();
         $actorparis = DB::table('actors')->where('city', '=', 'Paris')->count();
-
         $nbcom = DB::table('comments')->count();
         $comactif = DB::table('comments')->where('state', 2)->count();
         $comvalid = DB::table('comments')->where('state', 1)->count();
         $cominactif = DB::table('comments')->where('state', 0)->count();
-
         $sessions = Sessions::where('date_session', '>', new \DateTime('now'))->get();
 
 
-        //exit (dump($nbcom));
+
+
+
+
+
         //exit (dump($ageactor));
 
         //exit (dump($actorlyon));
@@ -116,8 +122,8 @@ class PagesController extends Controller
             "comactif" => $comactif,
             "comvalid" => $comvalid,
             "cominactif" => $cominactif,
-            "comments" => Comments::all(),
             "sessions" => $sessions,
+
 
 
         ];
@@ -145,6 +151,7 @@ class PagesController extends Controller
             'users' => Users::where('created_at','>', new \DateTime('-15 days'))->orderBy('created_at', 'desc',5)->get(),
             'movies' => Movies::all(),
             'tasks' => Tasks::all(),
+            "comments" => Comments::all(),
 
 
         ];
@@ -190,15 +197,19 @@ class PagesController extends Controller
 
 
 
-        return Redirect::route('pages.advenced');
+        return Redirect::route('pages/advenced');
 
     }
 
 
-//    public function pro(){
-//
-//        return view('Pages/pro');
-//    }
+    public function pro(){
+
+        return Redirect::route('pages/pro');
+    }
+
+
+
+
 
 
 }
