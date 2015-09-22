@@ -82,6 +82,7 @@ Route::group(['prefix'=> 'admin',
 
 
 
+    Route::post('/messages-create',['as'=>'messages.create','uses'=>'PagesController@createmessage']);
 
     Route::controller('api','ApiController');
 

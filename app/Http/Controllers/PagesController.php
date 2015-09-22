@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Model\Actors;
 use App\Model\Categories;
 use App\Model\Cinema;
+use App\Model\Message;
+use App\Model\Messages;
 use App\Model\Movies;
 use App\Model\Users;
 use Illuminate\Http\Request;
@@ -62,25 +64,22 @@ class PagesController extends Controller
 
     }
 
-    public function index()
-    {
-//
+    public function createmessage(Request $request){
+
+        $message = new Message();
+        $message->user = Auth::user()->toArray();
+        $message->content = $request->input('content');
+        $message->save();
+
+        return response()->json([true]);
+    }
 
 
+    public function index(){
 
-////        $m = new \MongoClient();
-////        $db=$m->selectDB('laravel');
-////        $collection = new \MongoCollection($db,'unicorns');
-////
-////        $find = array ('name' => 'Horny');
-////
-////        $result = $collection ->find($find);
-////
-////        foreach ($result as $document){
-////            dump($document);
-//        }
-//
-//        exit();
+
+        $messages = Message::where('user','exists',true)->get();
+
 
 
         if(Gate::denies('date_expire')){
@@ -123,6 +122,7 @@ class PagesController extends Controller
             "comvalid" => $comvalid,
             "cominactif" => $cominactif,
             "sessions" => $sessions,
+            'messages'=> $messages
 
 
 

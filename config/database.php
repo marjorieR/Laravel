@@ -46,6 +46,21 @@ return [
 
     'connections' => [
 
+        'mongodb'=> array(
+
+            'driver'    => 'mongodb',
+            'host'      => 'localhost',
+            'port'      => 27017,
+            'database'  => 'laravel',
+            'username'  => '',
+            'password'  => '',
+            'options'   => array(
+                'db'    => 'laravel'
+            )
+
+
+        ),
+
         'sqlite' => [
             'driver'   => 'sqlite',
             'database' => storage_path('database.sqlite'),

@@ -359,7 +359,11 @@
 
 </div>
 
-{{-- GRAPH RÉPARTITION NB SEANCES/MOIS --}}{{-- GRAPH RÉPARTITION NB SEANCES/MOIS --}}{{-- GRAPH RÉPARTITION NB SEANCES/MOIS --}}
+        <br />
+        <br />
+
+
+        {{-- GRAPH RÉPARTITION NB SEANCES/MOIS --}}{{-- GRAPH RÉPARTITION NB SEANCES/MOIS --}}{{-- GRAPH RÉPARTITION NB SEANCES/MOIS --}}
 
 <div class="row">
 
@@ -370,6 +374,71 @@
     </div>
 
 </div>
+        <br />
+        <br />
+
+
+<div class="row">
+
+    <div class="col-md-12">
+
+
+        <div class="panel widget-chat">
+
+            <div class="panel-heading">
+
+                <span class="panel-title"><i class="panel-title-icon fa fa-comments-o"></i>Chat</span>
+            </div> <!-- / .panel-heading -->
+            <div class="panel-body">
+
+                @foreach($messages as $message)
+
+                <div class="message">
+
+                    <img src="http://ui.unitedcats.com/img/ui/user_icons/_no_avatar_null_235x235.png" alt="" class="message-avatar">
+
+                    <div class="message-body">
+
+                        <div class="message-heading">
+
+                            <a href="#" title="">{{ $message['user']['firstname'] }}</a> says:
+
+                            <span class="pull-right"> {{ \Carbon\Carbon::createFromTimestamp(strtotime($message->created_at))->diffForHumans() }}</span>
+
+
+
+                        </div>
+                        <div class="message-text">
+
+                           {{ $message['content'] }}
+                        </div>
+                    </div> <!-- / .message-body -->
+                </div>  <!-- / .message -->
+
+                @endforeach
+
+
+
+            </div> <!-- / .panel-body -->
+            <form action = "{{ route('messages.create')}}" method="post" class="panel-footer chat-controls">
+                {{csrf_field()}}
+
+                <div class="chat-controls-input">
+
+                    <textarea rows="1" name ="content" class="form-control" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 32px;"></textarea>
+                </div>
+
+                <button class="btn btn-primary chat-controls-btn">Send</button>
+
+            </form> <!-- / .panel-footer -->
+        </div>
+
+
+    </div>
+
+</div>
+
+
 
 
 
