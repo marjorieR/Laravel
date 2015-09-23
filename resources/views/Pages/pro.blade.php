@@ -18,10 +18,9 @@
 
 @section ('js')
     @parent
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    <script src="{{ asset('js/gmap.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
 
 @endsection
 
@@ -46,9 +45,9 @@
 
             <div class="btn-group btn-group-sm" role="group" aria-label="...">
 
-                <a href="" class=" active btn btn-info btn-sm">Simple</a>
+                <a href="" class="btn btn-info btn-sm">Simple</a>
 
-                <a href="" class="btn btn-info btn-sm">Avancé</a>
+                <a href="{{ route('pages.advenced')}}" class="btn btn-info btn-sm">Avancé</a>
 
                 <a href="" class="active btn btn-info btn-sm">professionnel</a>
 
@@ -61,3 +60,17 @@
 
     <br />
     <br />
+
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <div id="contain" style="min-width: 310px; max-width: 800px; height: 400px; margin: 0 auto"></div>
+
+    </div>
+
+</div>
+
+
+@endsection

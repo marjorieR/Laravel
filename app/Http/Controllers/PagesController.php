@@ -102,8 +102,6 @@ class PagesController extends Controller
 
 
 
-
-
         //exit (dump($ageactor));
 
         //exit (dump($actorlyon));
@@ -122,7 +120,7 @@ class PagesController extends Controller
             "comvalid" => $comvalid,
             "cominactif" => $cominactif,
             "sessions" => $sessions,
-            'messages'=> $messages
+            'messages'=> $messages,
 
 
 
@@ -162,10 +160,6 @@ class PagesController extends Controller
 
     }
 
-
-
-
-
     public function tasks(\Illuminate\Http\Request $request){
 
 
@@ -204,7 +198,7 @@ class PagesController extends Controller
 
     public function pro(){
 
-        return Redirect::route('pages/pro');
+        return  view('Pages/pro');
     }
 
 

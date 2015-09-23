@@ -36,7 +36,7 @@ class Sessions extends Model{
     }
 
 
-    public function scopeSessionsNb($query){
+    public function scopeSessionsNb($query, $i){
 
 
 //        return $query->select(DB::raw("COUNT( date_session ) as nbs "))
@@ -44,22 +44,18 @@ class Sessions extends Model{
 //            ->groupBy(DB::raw("MONTH(date_session"));
 
 
-        $tab =[];
-        for($i = 1 ; $i <= 12 ; $i++){
 
-            $tab []= DB::table('sessions')->select(DB::raw("COUNT( date_session ) as nbs "))
+
+           return $query->select(DB::raw("COUNT( date_session ) as nbs "))
                 ->from('sessions')
                 ->where(DB::raw("MONTH(date_session)"),$i)
                 ->first();
 
 
 
-
-        }
-//        exit (dump($tab));
-
-
     }
+
+
 
 
 

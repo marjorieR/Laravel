@@ -161,12 +161,46 @@ $(document).ready(function(){
     });
 
 
+    $('.switcher').click(function(e){
+
+        var elt = $(this);
 
 
 
+            if($(this).is(':checked')){
+
+                $.ajax({
+
+                    url: elt.data('url'),
+                    method: "POST",
+                    data: {id:elt.data('id'), action:'add', _token: elt.data('token') }
+
+                }).done(function(){
+
+                    console.log(elt.data('id')+' en favoris')
+
+                });
+
+
+            }else{
+
+                $.ajax({
+
+                    url: elt.data('url'),
+                    method: "POST",
+                    data: {id:elt.data('id'), action:'remove',_token: elt.data('token')}
+
+                }).done(function(){
+
+                    console.log( elt.data('id')+'retiré des favoris')
+
+                });
+
+            }
 
 
 
+    });
 
 
 

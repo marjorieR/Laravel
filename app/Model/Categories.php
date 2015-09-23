@@ -19,13 +19,14 @@ class Categories extends Model{
     protected $fillable = ['title'];
 
 
-    public function scopeAllcatMovies($query){
+    public function scopeAllcatMovies($query,$limit = 10){
 
 
-        return $query->select('categories.title',DB::raw("COUNT( movies.id ) as nb "))
+        return $query->select('categories.id','categories.title',DB::raw("COUNT( movies.id ) as nb "))
             ->from('movies')
             ->join('categories', 'categories.id', '=', 'movies.categories_id')
-            ->groupBy('categories.id');
+            ->groupBy('categories.id')
+            ->take($limit);
 
 
     }

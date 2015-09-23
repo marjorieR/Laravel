@@ -43,11 +43,11 @@
 
         <div class="btn-group btn-group-sm" role="group" aria-label="...">
 
-            <a href="{{ route('pages.index')}}" class="btn btn-info btn-sm">Simple</a>
+            <a href="" class="btn btn-info btn-sm">Simple</a>
 
-            <a href="" class=" active btn btn-info btn-sm">Avancée</a>
+            <a href="{{ route('pages.advenced')}}" class=" active btn btn-info btn-sm">Avancée</a>
 
-            <a href="" class="btn btn-info btn-sm">professionnel</a>
+            <a href="{{ route('pages.pro')}}" class="btn btn-info btn-sm">professionnel</a>
 
         </div>
     </div>

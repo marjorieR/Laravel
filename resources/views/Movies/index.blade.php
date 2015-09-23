@@ -22,8 +22,8 @@
 @show
 
 
-@section('css')  
 
+@section('css')  
 @parent
 <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
 
@@ -206,6 +206,7 @@
                     <th>Titre</th>
                     <th>Description</th>
                     <th>Durée</th>
+                    <th>Favoris</th>
                     <th>Actions</th>
                     <th>Presse</th>
                 </tr>
@@ -269,6 +270,14 @@
 
                     <td>{{ $movie->duree }}h</td>
 
+
+                    <td>
+
+                       <input type="checkbox" data-class="switcher-info" data-token="{{ csrf_token() }}" data-id="{{ $movie->id }}"  data-url="{{ route ('movies.favoris') }}" class="switcher" checked="checked">
+
+
+                    </td>
+
                     <td>
                         <a href="" class="btn btn-primary btn-sm"><i class="fa fa-eye">  Voir</i></a>
                         @if(Route::current()->getName()== "movies.trash")
@@ -293,9 +302,6 @@
         <div class="table-footer">
             Footer
         </div>
-    </div>
-
-
 
 
 

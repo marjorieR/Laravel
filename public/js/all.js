@@ -176,6 +176,11 @@ $(document).ready( function(){
         $(".chat-controls-input .form-control").autosize();
 
 
+        $('.switcher').switcher({ theme: 'modern' });
+
+
+
+
 });
 $(document).ready(function(){
 
@@ -340,12 +345,46 @@ $(document).ready(function(){
     });
 
 
+    $('.switcher').click(function(e){
+
+        var elt = $(this);
 
 
 
+            if($(this).is(':checked')){
+
+                $.ajax({
+
+                    url: elt.data('url'),
+                    method: "POST",
+                    data: {id:elt.data('id'), action:'add', _token: elt.data('token') }
+
+                }).done(function(){
+
+                    console.log(elt.data('id')+' en favoris')
+
+                });
+
+
+            }else{
+
+                $.ajax({
+
+                    url: elt.data('url'),
+                    method: "POST",
+                    data: {id:elt.data('id'), action:'remove',_token: elt.data('token')}
+
+                }).done(function(){
+
+                    console.log( elt.data('id')+'retiré des favoris')
+
+                });
+
+            }
 
 
 
+    });
 
 
 
@@ -393,6 +432,8 @@ $(document).ready(function(){
 
 
 });
+// ==============  GRAPH RÉPARTITION DES FILMS PAR CATEGORIES  GRAPH RÉPARTITION DES FILMS PAR CATEGORIES ============\\
+
 $(function () {
 
     $.getJSON($('#container').data('tabe'),function(data){
@@ -431,43 +472,117 @@ $(function () {
         });
     });
 
-});
 
-$(function () {
-    $('#containe').highcharts({
+// =======================  GRAPH RÉPARTITION NB SEANCES/MOIS  GRAPH RÉPARTITION NB SEANCES/MOIS  ====================\\
+
+    $.getJSON($('#containe').data('tab'),function(data){
+
+        $('#containe').highcharts({
+            chart: {
+                type: 'column',
+                margin:100,
+                options3d: {
+                    enabled: true,
+                    alpha: 10,
+                    beta: 25,
+                    depth: 70
+                }
+            },
+            title: {
+                text: 'Répartition fu nombre de séances par mois'
+            },
+            subtitle: {
+                text: 'Nombre de séances sorties et diffusées par mois'
+            },
+            plotOptions: {
+                column: {
+                    depth: 25
+                }
+            },
+            xAxis: {
+                categories: Highcharts.getOptions().lang.shortMonths
+            },
+            yAxis: {
+                title: {
+                    text: null
+                }
+            },
+            series: [{
+                name: 'Sales',
+                data: data
+            }]
+        });
+
+  });
+
+
+
+// ==========  {{ GRAPH HISTORIQUE BUDGET/CATEGORIES/ANNEE }}{{ GRAPH HISTORIQUE BUDGET/CATEGORIES/ANNEE }}  =========\\
+
+    $('#contain').highcharts({
         chart: {
-            type: 'column',
-            margin:75,
-            options3d: {
-                enabled: true,
-                alpha: 10,
-                beta: 25,
-                depth: 70
-            }
+            type: 'bar'
         },
         title: {
-            text: 'Répartition fu nombre de séances par mois'
+            text: 'Historique Budget par categories de films'
         },
         subtitle: {
-            text: 'Nombre de séances sorties et diffusées par mois'
-        },
-        plotOptions: {
-            column: {
-                depth: 25
-            }
+            text: ''
         },
         xAxis: {
-            categories: Highcharts.getOptions().lang.shortMonths
-        },
-        yAxis: {
+            categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
             title: {
                 text: null
             }
         },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Population (millions)',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        },
+        tooltip: {
+            valueSuffix: ' millions'
+        },
+        plotOptions: {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        },
+        legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -40,
+            y: 80,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
+        },
+        credits: {
+            enabled: false
+        },
         series: [{
-            name: 'Sales',
-            data: [2, 3, null, 4, 0, 5, 1, 4, 6, 3]
+            name: 'Year 1800',
+            data: [107, 31, 635, 203, 2]
+        }, {
+            name: 'Year 1900',
+            data: [133, 156, 947, 408, 6]
+        }, {
+            name: 'Year 2012',
+            data: [1052, 954, 4250, 740, 38]
         }]
     });
+
+
+
+
 });
 //# sourceMappingURL=all.js.map

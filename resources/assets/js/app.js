@@ -176,4 +176,9 @@ $(document).ready( function(){
         $(".chat-controls-input .form-control").autosize();
 
 
+        $('.switcher').switcher({ theme: 'modern' });
+
+
+
+
 });

@@ -376,7 +376,6 @@ Use search to find needed section.
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('js/pixel-admin.min.js') }}"></script>
 <script src="{{ asset('js/all.js') }}"></script>
-<script src="{{ asset('js/ajax.js') }}"></script>
 
 
 <script type="text/javascript">

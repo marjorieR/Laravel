@@ -31,11 +31,5 @@ elixir(function(mix) {
 
 
 
-    mix.scripts([
-
-
-
-    ]);
-
 
 });

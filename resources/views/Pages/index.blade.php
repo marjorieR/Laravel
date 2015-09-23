@@ -21,12 +21,6 @@
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/highcharts-3d.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
-
-    <script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="http://code.highcharts.com/highcharts-3d.js"></script>
-    <script src="http://code.highcharts.com/modules/exporting.js"></script>
-
-
 @endsection
 
 
@@ -367,11 +361,11 @@
 
 <div class="row">
 
-    <div class="col-md-12">
 
-        <div id="containe" style="height: 400px; "></div>
 
-    </div>
+        <div id="containe" data-tab="{{ url('admin/api/sessions-nb') }}" style=" height: 400px; min-width: 310px;max-width: 800px; margin: 0 auto; "></div>
+
+
 
 </div>
         <br />

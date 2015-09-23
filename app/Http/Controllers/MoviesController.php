@@ -355,7 +355,15 @@ class MoviesController extends Controller{
     }
 
 
+    public function favoris(Request $request){
 
+        exit(dump(
+
+            $request->input('id'),
+            $request->input('action')
+        ));
+
+    }
 
 
 }
