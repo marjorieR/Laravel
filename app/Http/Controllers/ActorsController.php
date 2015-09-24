@@ -5,8 +5,6 @@ use App\Http\Requests\ActorsRequest;
 use App\Model\Actors;
 use App\Model\Movies;
 use Illuminate\Support\Facades\DB;
-
-
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
@@ -148,6 +146,48 @@ class ActorsController extends Controller{
         return Redirect::route('actors.index');
 
     }
+
+
+
+    public function likes(\Illuminate\Http\Request $request){
+
+        $actions = $request->input('action');
+        $id = $request->input('id');
+        $liked = session("likes", []);
+
+        if(! in_array($id, $liked)){
+            $liked[]=$id;
+
+
+            Session::put("likes",$liked);
+
+        }
+
+        dump(session("likes"));
+
+
+    }
+
+    public function dislikes(\Illuminate\Http\Request $request){
+
+        $actions = $request->input('action');
+        $id = $request->input('id');
+        $liked = session("dislikes", []);
+
+        if(! in_array($id, $liked)){
+            $liked[]=$id;
+
+
+            Session::put("dislikes",$liked);
+
+
+        }
+
+        dump(session("dislikes"));
+
+
+    }
+
 
 
 }

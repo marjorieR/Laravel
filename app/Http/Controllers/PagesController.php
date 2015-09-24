@@ -71,7 +71,7 @@ class PagesController extends Controller
         $message->content = $request->input('content');
         $message->save();
 
-        return response()->json([true]);
+
     }
 
 

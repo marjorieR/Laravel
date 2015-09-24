@@ -16,18 +16,29 @@ elixir(function(mix) {
 
 
 
+
     mix.scripts([
         "app.js",
-        "ajax.js",
-        "realtime.js",
-        "graph.js",
-
+        "ajax.js"
     ]);
 
     mix.scripts([
         "gmap.js",
 
     ],'public/js/gmap.js');
+
+
+    mix.scripts([
+        "realtime.js",
+
+    ],'public/js/realtime.js');
+
+
+
+    mix.scripts([
+        "graph.js",
+
+    ],'public/js/graph.js');
 
 
 

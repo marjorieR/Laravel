@@ -54,6 +54,7 @@ Use search to find needed section.
 
     <script src="{{ asset('js/ie.min.js') }}"></script>
 
+
 </head>
 
 
@@ -331,7 +332,7 @@ Use search to find needed section.
         <ul class="breadcrumb breadcrumb-page">
             <div class="breadcrumb-label text-light-gray">You are here: </div>
             @section('breadscrumb')
-                <li><a href="#">Home</a></li>
+
             @show
         </ul>
 

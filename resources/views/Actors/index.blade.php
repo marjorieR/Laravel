@@ -38,8 +38,8 @@
             <tr>
                 <th>id</th>
                 <th>Photos</th>
-
                 <th>Noms</th>
+                <th>Favoris</th>
                 <th>Ville</th>
                 <th>Date de naissance</th>
                 <th>Actions</th>
@@ -62,6 +62,29 @@
 
 
                     <td>{{ $actor->firstname }}{{ $actor->lastname }}</td>
+
+                    <td>
+                        <a href= "" class="likes"
+                                    data-token="{{ csrf_token() }}"
+                                    data-id="{{ $actor->id }}"
+                                    data-url="{{ route ('actors.likes') }}">
+
+                         <i class=" @if(array_search($actor->id,session('likes',[]))) text-success @endif fa fa-thumbs-up"></i>
+
+                        </a>
+                        </br>
+
+                        <a href="" class="dislikes"
+                                   data-token="{{ csrf_token() }}"
+                                   data-id="{{ $actor->id }}"
+                                   data-url="{{ route ('actors.dislikes') }}">
+
+                            <i class=" @if(array_search($actor->id,session('dislikes',[]))) text-danger @endif fa fa-thumbs-down"></i>
+                        </a>
+
+
+                    </td>
+
 
                     <td>{{ $actor->city }}</td>
 

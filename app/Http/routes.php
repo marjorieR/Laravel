@@ -27,6 +27,8 @@ Route::group(['prefix'=> 'pages'], function() {
 
     Route::get('/deletetasks/{id}', ['uses' => 'PagesController@deletetasks', 'as' => 'pages.deletetasks']);
 
+    Route::get('/ajaxchat', ['uses' => 'PagesController@createmessage', 'as' => 'pages.ajaxchat']);
+
 
 
 
@@ -154,7 +156,9 @@ Route::get('/delete/{id}', ['uses' => 'ActorsController@delete', 'as' => 'actors
 
     -> where ('id','[0-9]+');
 
+Route::post('/handle-likes', ['uses' => 'ActorsController@likes', 'as' => 'actors.likes']);
 
+Route::post('/handle-dislikes', ['uses' => 'ActorsController@dislikes', 'as' => 'actors.dislikes']);
 
 });
 

@@ -15,9 +15,13 @@
 @endsection
 
 
-
 @section ('js')
+
     @parent
+
+    <script src="{{ asset('js/realtime.js') }}"></script>
+    <script src="{{ asset('js/graph.js') }}"></script>
+
     <script src="http://code.highcharts.com/highcharts.js"></script>
     <script src="http://code.highcharts.com/highcharts-3d.js"></script>
     <script src="http://code.highcharts.com/modules/exporting.js"></script>
@@ -377,13 +381,13 @@
     <div class="col-md-12">
 
 
-        <div class="panel widget-chat">
+        <div id="chat" class="panel widget-chat" data-url="{{ route('pages.ajaxchat') }}">
 
             <div class="panel-heading">
 
                 <span class="panel-title"><i class="panel-title-icon fa fa-comments-o"></i>Chat</span>
             </div> <!-- / .panel-heading -->
-            <div class="panel-body">
+            <div id="" class="panel-body">
 
                 @foreach($messages as $message)
 
@@ -414,12 +418,15 @@
 
 
             </div> <!-- / .panel-body -->
+
+
             <form action = "{{ route('messages.create')}}" method="post" class="panel-footer chat-controls">
                 {{csrf_field()}}
 
                 <div class="chat-controls-input">
 
                     <textarea rows="1" name ="content" class="form-control" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 32px;"></textarea>
+
                 </div>
 
                 <button class="btn btn-primary chat-controls-btn">Send</button>

@@ -29,7 +29,23 @@ class Categories extends Model{
             ->take($limit);
 
 
+
+
     }
 
+
+
+
+    public function scopeSommeBudget($query,$periode , $category){
+
+           return $query->from('movies')
+                ->select(DB::raw("SUM(budget) as budget"))
+                ->whereBetween('annee', $periode)
+                ->where('categories_id', $category)
+                ->first();
+
+
+
+    }
 
 }

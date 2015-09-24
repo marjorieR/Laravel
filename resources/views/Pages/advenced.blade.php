@@ -19,9 +19,11 @@
 @section ('js')
     @parent
 
+
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script src="{{ asset('js/gmap.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/realtime.js') }}"></script>
 
 @endsection
 
@@ -402,6 +404,8 @@
 
 <div class="row">
 
+
+
     <div class="col-md-12">
 
         <div class="" id="panelajax" data-url="{{ route('comments.ajaxcomments') }}">
@@ -424,6 +428,12 @@
 
 
                 <div class="tab-content">
+
+                    <script>
+                        init.push(function () {
+                            $('#dashboard-recent .panel-body > div').slimScroll({ height: 300, alwaysVisible: true, color: '#888',allowPageScroll: true });
+                        })
+                    </script>
 
 
                     <div class="widget-comments panel-body tab-pane no-padding fade active in" id="dashboard">

@@ -273,7 +273,16 @@
 
                     <td>
 
-                       <input type="checkbox" data-class="switcher-info" data-token="{{ csrf_token() }}" data-id="{{ $movie->id }}"  data-url="{{ route ('movies.favoris') }}" class="switcher" checked="checked">
+                       <input  data-class="switcher-info"
+                               data-token="{{ csrf_token() }}"
+                               data-id="{{ $movie->id }}"
+                               data-url="{{ route ('movies.favoris') }}"
+                               class="switcher"
+                               @if(in_array($movie->id,session('favoris',[])))
+                                       checked
+                               @endif
+                               type="checkbox">
+
 
 
                     </td>

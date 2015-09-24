@@ -9,6 +9,7 @@ use App\Model\Categories;
 use App\Model\Directors;
 use App\Model\Movies;
 use App\Model\Comments;
+use App\Model\Sessions;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
@@ -357,13 +358,33 @@ class MoviesController extends Controller{
 
     public function favoris(Request $request){
 
-        exit(dump(
 
-            $request->input('id'),
-            $request->input('action')
-        ));
 
+            $action = $request->input('action');
+            $id = $request->input('id');
+            $liked = session("favoris", []);
+
+            if($action == "add"){
+                $liked[]=$id;
+
+                // enregistrer un item avec sa valeur
+                Session::put("favoris",$liked);
+
+
+            }else{
+
+                $position = array_search($id, $liked);
+
+                unset ($liked[$position]);
+
+                Session::put("favoris",$liked);
+
+            }
+
+            dump(session("favoris"));
     }
+
+
 
 
 }

@@ -56,108 +56,6 @@ $(document).ready( function(){
     $('#dashboard .panel-body > div').slimScroll({ height: 300, alwaysVisible: true, color: '#888',allowPageScroll: true });
 
 
-    //init.push(function () {
-    //    $('.widget-tasks .panel-body').pixelTasks().sortable({
-    //        axis: "y",
-    //        handle: ".task-sort-icon",
-    //        stop: function( event, ui ) {
-    //
-    //            ui.item.children( ".task-sort-icon" ).triggerHandler( "focusout" );
-    //        }
-    //    });
-    //    $('#clear-completed-tasks').click(function () {
-    //        $('.widget-tasks .panel-body').pixelTasks('clearCompletedTasks');
-    //    });
-    //});
-    //
-    //init.push(function () {
-    //    Morris.Bar({
-    //        element: 'hero-bar',
-    //        data: [
-    //            { device: 'New-York', geekbench: 5 },
-    //            { device: 'Paris', geekbench: 8 },
-    //            { device: 'San Francisco', geekbench: 3 },
-    //            { device: 'Los Angeles', geekbench: 10 },
-    //            { device: 'Toronto', geekbench: 15 },
-    //            { device: 'Bagdad', geekbench: 9 }
-    //        ],
-    //        xkey: 'device',
-    //        ykeys: ['geekbench'],
-    //        labels: ['Villes'],
-    //        barRatio: 0.4,
-    //        xLabelAngle: 35,
-    //        hideHover: 'auto',
-    //        barColors: PixelAdmin.settings.consts.COLORS,
-    //        gridLineColor: '#cfcfcf',
-    //        resize: true
-    //    });
-    //});
-    //
-    //
-    //init.push(function () {
-    //    // Doughnut Chart Data
-    //    var doughnutChartData = [{
-    //        label: "Enre 18 et 25", data: 50
-    //    }, {
-    //        label: "Entre 25 et 35", data: 30
-    //    }, {
-    //        label: "Entre 35 et 45", data: 90
-    //    }, {
-    //        label: "Entre 45 et 60", data: 70
-    //    }, {
-    //        label: "Plus de 60", data: 80
-    //    }];
-    //    // Init Chart
-    //    $('#jq-flot-pie').pixelPlot(doughnutChartData, {
-    //        series: {
-    //            pie: {
-    //                show: true,
-    //                radius: 1,
-    //                innerRadius: 0.5,
-    //                label: {
-    //                    show: true,
-    //                    radius: 3 / 4,
-    //                    formatter: function (label, series) {
-    //                        return '<div style="font-size:14px;text-align:center;padding:2px;color:white;">' + Math.round(series.percent) + '%</div>';
-    //                    },
-    //                    background: { opacity: 0 }
-    //                }
-    //            }
-    //        }
-    //    }, {
-    //        height: 205
-    //    });
-    //});
-    //
-    //
-    //init.push(function () {
-    //    Morris.Area({
-    //        element: 'hero-area',
-    //        data: [
-    //            { period: '2010 Q1', iphone: 2666, ipad: null, itouch: 2647 },
-    //            { period: '2010 Q2', iphone: 2778, ipad: 2294, itouch: 2441 },
-    //            { period: '2010 Q3', iphone: 4912, ipad: 1969, itouch: 2501 },
-    //            { period: '2010 Q4', iphone: 3767, ipad: 3597, itouch: 5689 },
-    //            { period: '2011 Q1', iphone: 6810, ipad: 1914, itouch: 2293 },
-    //            { period: '2011 Q2', iphone: 5670, ipad: 4293, itouch: 1881 },
-    //            { period: '2011 Q3', iphone: 4820, ipad: 3795, itouch: 1588 },
-    //            { period: '2011 Q4', iphone: 15073, ipad: 5967, itouch: 5175 },
-    //            { period: '2012 Q1', iphone: 10687, ipad: 4460, itouch: 2028 },
-    //            { period: '2012 Q2', iphone: 8432, ipad: 5713, itouch: 1791 }
-    //        ],
-    //        xkey: 'period',
-    //        ykeys: ['iphone', 'ipad', 'itouch'],
-    //        labels: ['iPhone', 'iPad', 'iPod Touch'],
-    //        hideHover: 'auto',
-    //        lineColors: PixelAdmin.settings.consts.COLORS,
-    //        fillOpacity: 0.3,
-    //        behaveLikeLine: true,
-    //        lineWidth: 2,
-    //        pointSize: 4,
-    //        gridLineColor: '#cfcfcf',
-    //        resize: true
-    //    });
-
 
         $.getJSON($('#hero-area').data('url'),function(data){
             var items=[];
@@ -177,6 +75,8 @@ $(document).ready( function(){
 
 
         $('.switcher').switcher({ theme: 'modern' });
+
+
 
 
 
@@ -349,8 +249,6 @@ $(document).ready(function(){
 
         var elt = $(this);
 
-
-
             if($(this).is(':checked')){
 
                 $.ajax({
@@ -388,200 +286,102 @@ $(document).ready(function(){
 
 
 
-});
-$(document).ready(function(){
+    $('.likes').click(function(e){
 
-    setInterval(function () {
-        console.log('OK');
+        e.preventDefault();
+        console.log('click');
 
-        //appel ajax
-        $.ajax({
-            url: $('#panelajax').attr('data-url')
+        var elt = $(this);
 
-        }).done(function(data){
-            $('#dashboard').html(data);
-        });
 
+
+        if($(this).has('text-success')){
+
+            console.log('success');
 
         $.ajax({
-            url: $('#sessions').attr('data-url')
 
-        }).done(function(data){
-            $('#dashboardajax').html(data);
+            url: elt.data('url'),
+            method: "POST",
+            data: {id:elt.data('id'), action:'add', _token: elt.data('token') }
+
+
+        }).done(function(){
+
+            console.log( elt.data('id')+'dans les likes');
+            elt.removeClass('text-success');
+
         });
 
-        $.ajax({
-            url: $('#tasks').attr('data-url')
 
-        }).done(function(data){
-            $('#dashajax').html(data);
-        });
+        }else{
 
+            $.ajax({
 
+                url: elt.data('url'),
+                method: "POST",
+                data: {id:elt.data('id'), action:'remove',_token: elt.data('token')}
 
+            }).done(function(){
 
+                console.log( elt.data('id')+'retiré des likes')
 
-    }, 3000);
+            });
 
-
-
-
-
-
+        }
 
 
 
-});
-// ==============  GRAPH RÉPARTITION DES FILMS PAR CATEGORIES  GRAPH RÉPARTITION DES FILMS PAR CATEGORIES ============\\
-
-$(function () {
-
-    $.getJSON($('#container').data('tabe'),function(data){
-
-        $('#container').highcharts({
-            chart: {
-                type: 'pie',
-                options3d: {
-                    enabled: true,
-                    alpha: 45,
-                    beta: 0
-                }
-            },
-            title: {
-                text: 'Répartion des films par categories'
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    depth: 35,
-                    dataLabels: {
-                        enabled: true,
-                        format: '{point.name}'
-                    }
-                }
-            },
-            series: [{
-                type: 'pie',
-                name: 'Browser share',
-                data: data
-            }]
-        });
     });
 
 
-// =======================  GRAPH RÉPARTITION NB SEANCES/MOIS  GRAPH RÉPARTITION NB SEANCES/MOIS  ====================\\
+    $('.dislikes').click(function(e){
 
-    $.getJSON($('#containe').data('tab'),function(data){
+        e.preventDefault();
+        console.log('click');
 
-        $('#containe').highcharts({
-            chart: {
-                type: 'column',
-                margin:100,
-                options3d: {
-                    enabled: true,
-                    alpha: 10,
-                    beta: 25,
-                    depth: 70
-                }
-            },
-            title: {
-                text: 'Répartition fu nombre de séances par mois'
-            },
-            subtitle: {
-                text: 'Nombre de séances sorties et diffusées par mois'
-            },
-            plotOptions: {
-                column: {
-                    depth: 25
-                }
-            },
-            xAxis: {
-                categories: Highcharts.getOptions().lang.shortMonths
-            },
-            yAxis: {
-                title: {
-                    text: null
-                }
-            },
-            series: [{
-                name: 'Sales',
-                data: data
-            }]
-        });
-
-  });
+        var elt = $(this);
 
 
 
-// ==========  {{ GRAPH HISTORIQUE BUDGET/CATEGORIES/ANNEE }}{{ GRAPH HISTORIQUE BUDGET/CATEGORIES/ANNEE }}  =========\\
+        if($(this).has('text-danger')){
 
-    $('#contain').highcharts({
-        chart: {
-            type: 'bar'
-        },
-        title: {
-            text: 'Historique Budget par categories de films'
-        },
-        subtitle: {
-            text: ''
-        },
-        xAxis: {
-            categories: ['Africa', 'America', 'Asia', 'Europe', 'Oceania'],
-            title: {
-                text: null
-            }
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Population (millions)',
-                align: 'high'
-            },
-            labels: {
-                overflow: 'justify'
-            }
-        },
-        tooltip: {
-            valueSuffix: ' millions'
-        },
-        plotOptions: {
-            bar: {
-                dataLabels: {
-                    enabled: true
-                }
-            }
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'top',
-            x: -40,
-            y: 80,
-            floating: true,
-            borderWidth: 1,
-            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-            shadow: true
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'Year 1800',
-            data: [107, 31, 635, 203, 2]
-        }, {
-            name: 'Year 1900',
-            data: [133, 156, 947, 408, 6]
-        }, {
-            name: 'Year 2012',
-            data: [1052, 954, 4250, 740, 38]
-        }]
+            console.log('success');
+
+            $.ajax({
+
+                url: elt.data('url'),
+                method: "POST",
+                data: {id:elt.data('id'), action:'add', _token: elt.data('token') }
+
+
+            }).done(function(){
+
+                console.log( elt.data('id')+'dans les dislikes');
+                elt.removeClass('text-success');
+
+            });
+
+
+        }else{
+
+            $.ajax({
+
+                url: elt.data('url'),
+                method: "POST",
+                data: {id:elt.data('id'), action:'remove',_token: elt.data('token')}
+
+            }).done(function(){
+
+                console.log( elt.data('id')+'retiré des dislikes')
+
+            });
+
+        }
+
+
+
     });
-
-
 
 
 });
