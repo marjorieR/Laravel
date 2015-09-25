@@ -293,7 +293,7 @@ Route::group(['prefix'=>'users'], function() {
         ->where('ville', '[a-zA-Z-]+')
         ->where('actif', '0|1');
 
-
+    Route::post('/handle-banni', ['uses' => 'UsersController@banni', 'as' => 'users.banni']);
 
 
 

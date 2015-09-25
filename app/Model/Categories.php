@@ -19,6 +19,19 @@ class Categories extends Model{
     protected $fillable = ['title'];
 
 
+
+
+
+
+
+    public function movies(){
+
+        return $this->hasMany('App\Model\Movies');
+
+    }
+
+
+
     public function scopeAllcatMovies($query,$limit = 10){
 
 

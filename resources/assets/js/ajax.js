@@ -160,6 +160,7 @@ $(document).ready(function(){
 
     });
 
+// =================================>    SESSION FILMS FAVORIS    <======================================
 
     $('.switcher').click(function(e){
 
@@ -202,6 +203,10 @@ $(document).ready(function(){
 
 
 
+// =================================>    SESSION J'AIME / J'AIME PAS  ACTEURS    <======================================
+
+
+
     $('.likes').click(function(e){
 
         e.preventDefault();
@@ -211,7 +216,8 @@ $(document).ready(function(){
 
 
 
-        if($(this).has('text-success')){
+
+        if($(this).hasClass('text-success')){
 
             console.log('success');
 
@@ -224,7 +230,7 @@ $(document).ready(function(){
 
         }).done(function(){
 
-            console.log( elt.data('id')+'dans les likes');
+            //console.log( elt.data('id')+'dans les likes');
             elt.removeClass('text-success');
 
         });
@@ -239,6 +245,7 @@ $(document).ready(function(){
                 data: {id:elt.data('id'), action:'remove',_token: elt.data('token')}
 
             }).done(function(){
+                elt.addClass('text-success');
 
                 console.log( elt.data('id')+'retiré des likes')
 
@@ -251,6 +258,8 @@ $(document).ready(function(){
     });
 
 
+
+
     $('.dislikes').click(function(e){
 
         e.preventDefault();
@@ -260,7 +269,7 @@ $(document).ready(function(){
 
 
 
-        if($(this).has('text-danger')){
+        if($(this).hasClass('text-danger')){
 
             console.log('success');
 
@@ -274,7 +283,7 @@ $(document).ready(function(){
             }).done(function(){
 
                 console.log( elt.data('id')+'dans les dislikes');
-                elt.removeClass('text-success');
+                elt.removeClass('text-danger');
 
             });
 
@@ -289,6 +298,7 @@ $(document).ready(function(){
 
             }).done(function(){
 
+                elt.addClass('text-danger');
                 console.log( elt.data('id')+'retiré des dislikes')
 
             });
@@ -298,6 +308,77 @@ $(document).ready(function(){
 
 
     });
+
+
+
+// =====================================>    SESSION ACTION BANNIR USERS    <===========================================
+
+
+    $('.banni').click(function(e){
+
+        e.preventDefault();
+        console.log('Banana Click');
+
+        var elt = $(this);
+
+
+        if($(this).hasClass('btn-danger')){
+
+            console.log('Banana Success :(');
+
+            $.ajax({
+
+                    url: elt.data('url'),
+                    method: "POST",
+                    data: {id:elt.data('id'), action:'add', _token: elt.data('token') }
+
+                }).done(function(){
+
+                    elt.removeClass('btn-danger');
+                    elt.addClass('btn-warning');
+                    elt.text("Debannir");
+
+                    console.log(elt.data('id')+' en banni')
+
+                });
+
+
+        }else{
+            console.log('Banana Success :)');
+            $.ajax({
+
+                url: elt.data('url'),
+                method: "POST",
+                data: {id:elt.data('id'), action:'remove',_token: elt.data('token')}
+
+            }).done(function(){
+
+                elt.removeClass('btn-warning');
+                elt.addClass('btn-danger');
+                elt.text("Bannir")
+
+
+            });
+
+        }
+
+
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 });

@@ -68,7 +68,13 @@
             @foreach($users as $user)
 
                 <tr>
-                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->id }}
+                        <i class= @if(in_array($user->id,session('banni',[])))" text-danger @endif fa fa-ban"></i></td>
+
+
+
+
+
 
                     <td class ="col-lg-1">
 
@@ -114,6 +120,14 @@
                     <td>
                         <a href="" class="btn btn-primary btn-sm"><i class="fa fa-eye">  Voir</i></a>
                         <a href="{{ route('users.delete',['id'=>$user->id]) }}" class="btn btn-primary btn-sm"><i class="fa fa-trash">  Supprimer</i></a>
+
+
+                        <a href="" class=" banni btn btn-danger btn-sm btn-rounded"
+
+                                   data-token="{{ csrf_token() }}"
+                                   data-id="{{ $user->id }}"
+                                   data-url="{{ route ('users.banni') }}"><i class="fa fa-times"> Bannir</i></a>
+
                     </td>
 
 

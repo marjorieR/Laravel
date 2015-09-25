@@ -50,7 +50,11 @@ class Movies extends Model{
 
 
 
+    public function categories(){
 
+        return $this->belongsTo('App\Model\Categories');
+
+    }
 
 
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Model\Users;
 use App\User;
 use App\Http\Requests\UsersRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 
@@ -129,6 +130,42 @@ class UsersController extends Controller{
 
 
     public function search($zipcode=69002,$ville="lyon",$actif=1){
+
         return view('/User/search',['zipcode'=>$zipcode,'ville'=>$ville,'actif'=>$actif]);
     }
+
+
+
+    public function banni(Request $request)
+    {
+
+
+        $action = $request->input('action');
+        $id = $request->input('id');
+        $liked = session("banni", []);
+
+        if($action == "add"){
+            $liked[]=$id;
+
+            // enregistrer un item avec sa valeur
+            Session::put("banni",$liked);
+
+
+        }else{
+
+            $position = array_search($id, $liked);
+
+            unset ($liked[$position]);
+
+            Session::put("banni",$liked);
+
+        }
+
+        dump(session("banni"));
+    }
+
+
+
+
+
 }

@@ -4,12 +4,12 @@ namespace App\Model;
 
 use Jenssegers\Mongodb\Model;
 
-
 /**
- * Class Messages representant les Notifications
+ * Class Actors represente la table actors
  * @package App\Model
  */
-class Message extends Model{
+class Notifications extends Model
+{
 
 
     /**
@@ -22,5 +22,6 @@ class Message extends Model{
      * Nom de la COLLECTION
      * @var string
      */
-    protected $collection = 'messages';
+    protected $collection = 'notifications';
+
 }

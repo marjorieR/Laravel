@@ -27,10 +27,17 @@
 @parent
 <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
 
+
 @endsection
 
 
+@section ('js')
 
+    @parent
+
+    <script src="{{ asset('js/realtime.js') }}"></script>
+
+@endsection
 
 @section('content')
 
@@ -281,7 +288,7 @@
                                @if(in_array($movie->id,session('favoris',[])))
                                        checked
                                @endif
-                               type="checkbox">
+                               type="checkbox"/>
 
 
 
@@ -295,11 +302,14 @@
                             <a href="{{ route('movies.delete',['id'=>$movie->id]) }}" class="btn btn-danger btn-sm"><i class="fa fa-trash">  Supprimer</i></a>
                         @endif
 
+                    </td>
+
                         <td>
                             <a href="" class="btn btn-xs btn-primary"><i class="fa fa-thumbs-up"></i> Note de presse <small>({{ $movie->note_presse }}/5)</small></a>
                             <a href="" class="btn btn-xs btn-primary"><i class="fa fa-thumbs-down"></i> Note de presse <small>({{ $movie->note_presse }}/5)</small></a>
                         </td>
-                    </td>
+
+
 
                 </tr>
 
